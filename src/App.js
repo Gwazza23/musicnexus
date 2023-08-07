@@ -1,7 +1,13 @@
+import { BrowserRouter } from "react-router-dom";
 import "./App.css";
+import AllRoutes from "./Util/AllRoutes";
 
 function App() {
-  return <h1>Music Nexus</h1>;
+  return (
+    <BrowserRouter>
+      <AllRoutes />
+    </BrowserRouter>
+  );
 }
 
 export default App;
