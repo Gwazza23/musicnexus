@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import LandingPage from "../Pages/LandingPage/LandingPage";
+import LandingPage from "../Pages/Landing/LandingPage";
 
 function AllRoutes() {
   const location = useLocation();
