@@ -1,18 +1,23 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&display=swap');
 
 :root {
   --primary: #ff1212;
   --primary-light: #ff4545;
   --background: #212121;
+  --background-light: #2e2e2e;
+  --background-hover: #1a1a1a;
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  color: white;
 }
 
 body {
   background-color: #212121;
+  font-family: 'Quicksand', sans-serif;
+}
+button {
+  font-family: 'Quciksand', sans-serif;
 }

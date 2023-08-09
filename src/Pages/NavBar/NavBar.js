@@ -1,9 +1,57 @@
-import { Outlet } from "react-router-dom";
+import "./NavBar.css";
+import { MdReplay } from "react-icons/md";
+import { GiMicrophone } from "react-icons/gi";
+import { PiMusicNotesFill, PiPlaylistFill } from "react-icons/pi";
+import { BiSolidUser, BiExit } from "react-icons/bi";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function NavBar() {
+  const navigate = useNavigate();
+  const accessToken = localStorage.getItem("accessToken");
+
+  const handleLogout = (event) => {
+    event.preventDefault();
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("expiresAt");
+    navigate("/");
+  };
+
+  useEffect(() => {
+    if (!accessToken) {
+      navigate("/");
+    }
+  }, [accessToken, navigate]);
   return (
     <>
-      <div>NavBar</div>
+      <nav>
+        <div className="nav-links">
+          <NavLink to="/home">
+            <BiSolidUser />
+            <p>Profile</p>
+          </NavLink>
+          <NavLink to="/top-artists">
+            <GiMicrophone />
+            <p>Top Artists</p>
+          </NavLink>
+          <NavLink to="/top-tracks">
+            <PiMusicNotesFill />
+            <p>Top Tracks</p>
+          </NavLink>
+          <NavLink to="/recent">
+            <MdReplay />
+            <p>Recent</p>
+          </NavLink>
+          <NavLink to="/playlists">
+            <PiPlaylistFill />
+            <p>Playlists</p>
+          </NavLink>
+          <button onClick={handleLogout}>
+            <BiExit />
+            <p>Log out</p>
+          </button>
+        </div>
+      </nav>
       <Outlet />
     </>
   );

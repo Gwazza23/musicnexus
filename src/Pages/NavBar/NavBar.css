@@ -1,0 +1,81 @@
+nav,
+.nav-links,
+.nav-links a,
+.nav-links button {
+  display: flex;
+}
+
+.nav-links,
+.nav-links a,
+.nav-links button {
+  justify-content: center;
+}
+
+.nav-links a,
+.nav-links button {
+  cursor: pointer;
+  width: 100px;
+  align-items: center;
+  flex-direction: column;
+  font-size: 1.8rem;
+  color: #d9d9d9;
+}
+
+.nav-links a p,
+.nav-links button p {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.nav-links a:hover,
+.nav-links button:hover,
+.nav-links a.active {
+  background-color: var(--background-hover);
+  border-bottom: 2.5px solid var(--primary);
+  margin-bottom: -2.5px;
+  color: white;
+}
+
+nav {
+  height: 10vh;
+  background-color: black;
+}
+
+.nav-links {
+  width: 100%;
+}
+
+.nav-links a {
+  text-decoration: none;
+}
+
+.nav-links button {
+  border: none;
+  background-color: black;
+}
+
+@media only screen and (max-width: 768px) {
+  nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 530px) {
+  .nav-links a p,
+  .nav-links button p {
+    font-size: 0.65rem;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .nav-links a p,
+  .nav-links button p {
+    font-size: 0.55rem;
+  }
+  .nav-links a,
+  .nav-links button {
+    font-size: 1.4rem;
+  }
+}
