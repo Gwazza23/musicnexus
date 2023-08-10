@@ -3,6 +3,17 @@ import axios from "axios";
 const client_id = process.env.REACT_APP_CLIENT_ID;
 const redirect_uri = "http://localhost:3000/callback";
 
+function retrieveAccessToken() {
+  const accessToken = localStorage.getItem("accessToken");
+  return accessToken;
+}
+
+/* 
+ -----------  
+|   oauth   |
+ -----------
+*/
+
 export function generateRandomString(length) {
   let text = "";
   let possible =
@@ -71,3 +82,24 @@ function redirectUserToLoginPage() {
 }
 
 setInterval(redirectUserToLoginPage, 1 * 60 * 1000);
+
+/* 
+ --------------  
+|   userInfo   |
+ --------------
+*/
+
+export async function getProfileInfo() {
+  const accessToken = retrieveAccessToken();
+  try {
+    let url = "https://api.spotify.com/v1/me";
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response
+  } catch (error) {
+    console.error("Error fetching profileInfo", error);
+  }
+}
