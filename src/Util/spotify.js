@@ -115,6 +115,21 @@ export async function getUserFollowing() {
     });
     return response;
   } catch (error) {
-    console.error("Error fetching playlists");
+    console.error("Error fetching playlists", error);
+  }
+}
+
+export async function getUserTop(type) {
+  const accessToken = retrieveAccessToken();
+  try {
+    let url = `https://api.spotify.com/v1/me/top/${type}`;
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error("Error fetching top artists", error);
   }
 }
