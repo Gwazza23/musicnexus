@@ -74,7 +74,7 @@ function hasAccessTokenExpired() {
 
 function redirectUserToLoginPage() {
   if (hasAccessTokenExpired()) {
-    console.log("need to log in again");
+    console.log("token has expired");
     window.open("/", "_self");
   } else {
     console.log("token has not expired");
@@ -98,8 +98,23 @@ export async function getProfileInfo() {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-    return response
+    return response;
   } catch (error) {
     console.error("Error fetching profileInfo", error);
+  }
+}
+
+export async function getUserFollowing() {
+  const accessToken = retrieveAccessToken();
+  try {
+    let url = "https://api.spotify.com/v1/me/following?type=artist";
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error("Error fetching playlists");
   }
 }
