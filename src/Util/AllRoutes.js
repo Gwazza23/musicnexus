@@ -4,6 +4,7 @@ import LandingPage from "../Pages/Landing/LandingPage";
 import Callback from "../Pages/Callback/Callback";
 import NavBar from "../Pages/NavBar/NavBar";
 import Home from "../Pages/Home/Home";
+import Artists from "../Pages/Artists/Artists";
 
 function AllRoutes() {
   const location = useLocation();
@@ -15,6 +16,7 @@ function AllRoutes() {
         <Route path="/callback" element={<Callback />} />
         <Route path="/home" element={<NavBar />}>
           <Route path="/home/profile" element={<Home />} />
+          <Route path="/home/artists" element={<Artists />} />
         </Route>
       </Routes>
     </AnimatePresence>

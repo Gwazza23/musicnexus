@@ -30,7 +30,7 @@ function NavBar() {
             <BiSolidUser />
             <p>Profile</p>
           </NavLink>
-          <NavLink to="/top-artists">
+          <NavLink to="/home/artists">
             <GiMicrophone />
             <p>Top Artists</p>
           </NavLink>
