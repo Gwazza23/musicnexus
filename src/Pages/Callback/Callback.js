@@ -11,7 +11,7 @@ function Callback() {
   useEffect(() => {
     getAccessToken(code, codeVerifier).then((response) => {
       if (response === 200) {
-        navigate("/home");
+        navigate("/home/profile");
       }
     });
   }, [code, codeVerifier, navigate]);

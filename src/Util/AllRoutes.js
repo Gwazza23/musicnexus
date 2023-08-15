@@ -14,7 +14,7 @@ function AllRoutes() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/callback" element={<Callback />} />
         <Route path="/home" element={<NavBar />}>
-          <Route index element={<Home />} />
+          <Route path="/home/profile" element={<Home />} />
         </Route>
       </Routes>
     </AnimatePresence>

@@ -1,10 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getUserTop } from "../Util/spotify";
 
-const fetchUserTopArtists = createAsyncThunk("artists/topArtists", async () => {
-  const response = await getUserTop("artists");
-  return response;
-});
+const fetchUserTopArtists = createAsyncThunk(
+  "artists/topArtists",
+  async (time_range) => {
+    const response = await getUserTop("artists", time_range);
+    return response;
+  }
+);
 
 const artistsSlice = createSlice({
   name: "userArtists",

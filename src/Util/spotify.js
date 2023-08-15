@@ -119,10 +119,10 @@ export async function getUserFollowing() {
   }
 }
 
-export async function getUserTop(type) {
+export async function getUserTop(type,time_range) {
   const accessToken = retrieveAccessToken();
   try {
-    let url = `https://api.spotify.com/v1/me/top/${type}`;
+    let url = `https://api.spotify.com/v1/me/top/${type}?time_range=${time_range}`;
     const response = await axios.get(url, {
       headers: {
         Authorization: `Bearer ${accessToken}`,

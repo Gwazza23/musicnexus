@@ -26,7 +26,7 @@ function NavBar() {
     <>
       <nav>
         <div className="nav-links">
-          <NavLink to="/home">
+          <NavLink to="/home/profile">
             <BiSolidUser />
             <p>Profile</p>
           </NavLink>

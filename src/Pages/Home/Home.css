@@ -1,10 +1,21 @@
-.user-about-section, .user-info-section, .user-info, .user-info div {
+.user-about-section,
+.user-info-section,
+.user-info,
+.user-info div,
+.home-page-top-section,
+.home-page-top-card {
   display: flex;
 }
 
-.user-info-section, .user-info div {
+.user-info-section,
+.user-info div {
   align-items: center;
   flex-direction: column;
+}
+
+.user-info-section,
+.home-page-top-section {
+  justify-content: space-around;
 }
 
 .home-page-container {
@@ -22,7 +33,6 @@
 }
 
 .user-info-section {
-  justify-content: space-around;
   width: 82vw;
 }
 
@@ -45,7 +55,39 @@
   font-size: 1.2rem;
 }
 
-@media only screen and (max-width: 768px){
+.home-page-top-section {
+  flex-wrap: wrap;
+  background-color: var(--background-hover);
+  padding: 1vh;
+}
+.home-page-top-section h2 {
+  margin: 15px 0px;
+  text-decoration: underline;
+  text-decoration-color: var(--primary);
+}
+.home-page-top-card {
+  cursor: pointer;
+  background-color: var(--background-light);
+  padding: 5px;
+  min-width: 320px;
+  width: 35vw;
+  margin: 10px 0px;
+  align-items: center;
+}
+.home-page-top-card:hover {
+  background-color: var(--background-hover-lighter);
+}
+.home-page-top-card h4,
+h6 {
+  height: fit-content;
+  margin-left: 10px;
+}
+.home-page-top-card img {
+  width: 125px;
+  height: 125px;
+}
+
+@media only screen and (max-width: 768px) {
   .user-about-section img {
     width: 150px;
   }
@@ -58,7 +100,7 @@
   }
 }
 
-@media only screen and (max-width: 425px ){
+@media only screen and (max-width: 425px) {
   .user-info {
     margin-top: 10px;
   }
@@ -67,6 +109,9 @@
   }
   .user-info div p:first-child {
     font-size: 1rem;
+  }
+  .home-page-top-card {
+    min-width: 280px;
   }
 }
 
