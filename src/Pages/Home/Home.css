@@ -68,7 +68,6 @@
 .home-page-top-card {
   cursor: pointer;
   background-color: var(--background-light);
-  padding: 5px;
   min-width: 320px;
   width: 35vw;
   margin: 10px 0px;
@@ -81,6 +80,10 @@
 h6 {
   height: fit-content;
   margin-left: 10px;
+}
+.home-page-image-div {
+  padding: 12px;
+  background-color: rgba(225, 225, 225, 0.25)
 }
 .home-page-top-card img {
   width: 125px;

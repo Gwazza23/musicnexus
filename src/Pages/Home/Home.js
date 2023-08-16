@@ -13,8 +13,8 @@ function Home() {
   const dispatch = useDispatch();
 
   const data = useSelector(selectUser);
-  const artists = useSelector(selectArtists).data?.data?.items?.slice(0, 5);
-  const tracks = useSelector(selectTracks).data?.data?.items?.slice(0, 5);
+  const artists = useSelector(selectArtists).data?.items?.slice(0, 5);
+  const tracks = useSelector(selectTracks).data?.items?.slice(0, 5);
 
   console.log(tracks);
 
@@ -57,7 +57,9 @@ function Home() {
               {artists?.map((artist) => {
                 return (
                   <div className="home-page-top-card">
-                    <img src={artist.images[0].url} alt={artist.name} />
+                    <div className="home-page-image-div">
+                      <img src={artist.images[0].url} alt={artist.name} />
+                    </div>
                     <div className="home-page-top-info">
                       <h4>{artist.name}</h4>
                     </div>
@@ -72,7 +74,9 @@ function Home() {
               {tracks?.map((track) => {
                 return (
                   <div className="home-page-top-card">
-                    <img src={track.album.images[0].url} alt={track.name} />
+                    <div className="home-page-image-div">
+                      <img src={track.album.images[0].url} alt={track.name} />
+                    </div>
                     <div className="home-page-top-info">
                       <h4>{track.name}</h4>
                       <h6>{track.artists[0].name}</h6>

@@ -5,7 +5,7 @@ const fetchUserTopArtists = createAsyncThunk(
   "artists/topArtists",
   async (time_range) => {
     const response = await getUserTop("artists", time_range);
-    return response;
+    return response.data;
   }
 );
 

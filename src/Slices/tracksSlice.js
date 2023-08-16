@@ -5,7 +5,7 @@ const fetchUserTopTrack = createAsyncThunk(
   "tracks/topTracks",
   async (time_range) => {
     const response = await getUserTop("tracks", time_range);
-    return response;
+    return response.data;
   }
 );
 
