@@ -119,7 +119,7 @@ export async function getUserFollowing() {
   }
 }
 
-export async function getUserTop(type,time_range) {
+export async function getUserTop(type, time_range) {
   const accessToken = retrieveAccessToken();
   try {
     let url = `https://api.spotify.com/v1/me/top/${type}?time_range=${time_range}`;
@@ -131,5 +131,26 @@ export async function getUserTop(type,time_range) {
     return response;
   } catch (error) {
     console.error("Error fetching top artists", error);
+  }
+}
+
+/* 
+ ------------ 
+|   tracks   |
+ ------------
+*/
+
+export async function getRecentlyPlayedTracks() {
+  const accessToken = retrieveAccessToken();
+  try {
+    let url = `https://api.spotify.com/v1/me/player/recently-played`;
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error("Error fetching recently played tracks", error);
   }
 }

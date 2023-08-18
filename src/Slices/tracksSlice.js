@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getUserTop } from "../Util/spotify";
+import { getRecentlyPlayedTracks, getUserTop } from "../Util/spotify";
 
 const fetchUserTopTrack = createAsyncThunk(
   "tracks/topTracks",
@@ -9,10 +9,19 @@ const fetchUserTopTrack = createAsyncThunk(
   }
 );
 
+const fetchUserRecentTracks = createAsyncThunk(
+  "tracks/recentTracks",
+  async () => {
+    const response = await getRecentlyPlayedTracks();
+    return response.data;
+  }
+);
+
 const tracksSlice = createSlice({
   name: "userTracks",
   initialState: {
     data: [],
+    recent: [],
     status: "idle",
     error: null,
   },
@@ -28,11 +37,22 @@ const tracksSlice = createSlice({
       .addCase(fetchUserTopTrack.rejected, (state, action) => {
         state.status = "rejected";
         state.data = action.error.message;
-      });
+      })
+      .addCase(fetchUserRecentTracks.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchUserRecentTracks.fulfilled, (state,action) => {
+        state.status = 'completed'
+        state.recent = action.payload
+      })
+      .addCase(fetchUserRecentTracks.rejected, (state,action) => {
+        state.status = 'rejected'
+        state.error = action.error.message
+      })
   },
 });
 
-export { fetchUserTopTrack };
+export { fetchUserTopTrack, fetchUserRecentTracks };
 
 export default tracksSlice.reducer;
 

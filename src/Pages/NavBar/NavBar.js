@@ -38,7 +38,7 @@ function NavBar() {
             <PiMusicNotesFill />
             <p>Top Tracks</p>
           </NavLink>
-          <NavLink to="/recent">
+          <NavLink to="/home/recent">
             <MdReplay />
             <p>Recent</p>
           </NavLink>
