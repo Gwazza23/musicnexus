@@ -154,3 +154,24 @@ export async function getRecentlyPlayedTracks() {
     console.error("Error fetching recently played tracks", error);
   }
 }
+
+/* 
+ ---------------
+|   playlists   |
+ ---------------
+*/
+
+export async function getUserPlaylists() {
+  const accessToken = retrieveAccessToken();
+  try {
+    let url = `https://api.spotify.com/v1/me/playlists`;
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error("Error fetching user playlists", error);
+  }
+}

@@ -8,7 +8,6 @@ function Recent() {
   const dispatch = useDispatch();
 
   const recent = useSelector(selectTracks).recent.items;
-  console.log(recent);
   useEffect(() => {
     dispatch(fetchUserRecentTracks());
   }, [dispatch]);
@@ -30,7 +29,9 @@ function Recent() {
               <div className="recent-page-info-div">
                 <h3>{track.track.name}</h3>
                 <ul>
-                    <li>Artist: <span>{track.track.artists[0].name}</span></li>
+                  <li>
+                    Artist: <span>{track.track.artists[0].name}</span>
+                  </li>
                   <li>
                     Duration:
                     <span>

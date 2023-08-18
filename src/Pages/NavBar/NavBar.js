@@ -42,7 +42,7 @@ function NavBar() {
             <MdReplay />
             <p>Recent</p>
           </NavLink>
-          <NavLink to="/playlists">
+          <NavLink to="/home/playlists">
             <PiPlaylistFill />
             <p>Playlists</p>
           </NavLink>
