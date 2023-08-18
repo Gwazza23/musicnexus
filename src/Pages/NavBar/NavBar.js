@@ -34,7 +34,7 @@ function NavBar() {
             <GiMicrophone />
             <p>Top Artists</p>
           </NavLink>
-          <NavLink to="/top-tracks">
+          <NavLink to="/home/tracks">
             <PiMusicNotesFill />
             <p>Top Tracks</p>
           </NavLink>
