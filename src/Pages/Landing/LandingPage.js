@@ -9,7 +9,7 @@ function LandingPage() {
     const codeVerifier = generateRandomString(126);
     await generateCodeChallenge(codeVerifier).then((codeChallenge) => {
       let state = generateRandomString(16);
-      let scope = "user-read-private user-read-email user-follow-read user-top-read";
+      let scope = "user-read-private user-read-email user-follow-read user-top-read user-read-recently-played";
 
       localStorage.setItem("code_verifier", codeVerifier);
 
