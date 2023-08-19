@@ -2,9 +2,11 @@ import "./UserTop.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserTopTrack, selectTracks } from "../../Slices/tracksSlice";
+import { useNavigate } from "react-router-dom";
 
 function Tracks() {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const [sort, setSort] = useState("long_term");
 
@@ -42,14 +44,17 @@ function Tracks() {
       <div className="user-top-page-div">
         {tracks?.map((track) => {
           return (
-            <div className="user-top-page-card" key={track.id}>
+            <div className="user-top-page-card" key={track.id} onClick={() => {
+              navigate(`/home/tracks/${track.id}`)
+            }} >
               <div className="user-top-page-image-div">
                 <img src={track.album.images[0].url} alt={track.name} />
               </div>
               <div className="user-top-page-info-div">
                 <h3>{track.name}</h3>
                 <ul>
-                  <li>{track.album.name}</li>
+                  <li><i>{track.album.name}</i></li>
+                  <li>{track.artists[0]?.name}</li>
                 </ul>
               </div>
             </div>

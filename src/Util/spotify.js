@@ -155,6 +155,21 @@ export async function getRecentlyPlayedTracks() {
   }
 }
 
+export async function getTrack(id) {
+  const accessToken = retrieveAccessToken();
+  try {
+    let url = `https://api.spotify.com/v1/tracks/${id}`;
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error("Error fetching track information", error);
+  }
+}
+
 /* 
  ---------------
 |   playlists   |

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getRecentlyPlayedTracks, getUserTop } from "../Util/spotify";
+import { getRecentlyPlayedTracks, getTrack, getUserTop } from "../Util/spotify";
 
 const fetchUserTopTrack = createAsyncThunk(
   "tracks/topTracks",
@@ -16,6 +16,11 @@ const fetchUserRecentTracks = createAsyncThunk(
     return response.data;
   }
 );
+
+const fetchTrack = createAsyncThunk("tracks/track", async (id) => {
+  const response = await getTrack(id);
+  return response.data;
+});
 
 const tracksSlice = createSlice({
   name: "userTracks",
@@ -39,20 +44,31 @@ const tracksSlice = createSlice({
         state.data = action.error.message;
       })
       .addCase(fetchUserRecentTracks.pending, (state) => {
-        state.status = 'loading';
+        state.status = "loading";
       })
-      .addCase(fetchUserRecentTracks.fulfilled, (state,action) => {
-        state.status = 'completed'
-        state.recent = action.payload
+      .addCase(fetchUserRecentTracks.fulfilled, (state, action) => {
+        state.status = "completed";
+        state.recent = action.payload;
       })
-      .addCase(fetchUserRecentTracks.rejected, (state,action) => {
-        state.status = 'rejected'
-        state.error = action.error.message
+      .addCase(fetchUserRecentTracks.rejected, (state, action) => {
+        state.status = "rejected";
+        state.error = action.error.message;
       })
+      .addCase(fetchTrack.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchTrack.fulfilled, (state, action) => {
+        state.status = "completed";
+        state.data = action.payload;
+      })
+      .addCase(fetchTrack.rejected, (state, action) => {
+        state.status = "rejected";
+        state.error = action.error.message;
+      });
   },
 });
 
-export { fetchUserTopTrack, fetchUserRecentTracks };
+export { fetchUserTopTrack, fetchUserRecentTracks, fetchTrack };
 
 export default tracksSlice.reducer;
 
