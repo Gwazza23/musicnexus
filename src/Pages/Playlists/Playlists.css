@@ -1,5 +1,15 @@
+.playlists-page-container {
+    position: relative;
+    top: 10vh;
+}
+
 .playlists-page-header {
   margin: 5vh 3vw;
+  color: var(--primary);
+}
+.playlists-page-header h1 {
+    text-decoration: underline;
+    text-decoration-color: var(--tertiary);
 }
 
 .playlists-page-div {
@@ -13,7 +23,7 @@
   display: flex;
   width: calc(50% - 20px);
   margin: 10px;
-  background-color: var(--background-light);
+  background-color: var(--primary);
   height: max-content;
 }
 
@@ -72,7 +82,10 @@
         align-items: center;
     }
     .playlists-page-container {
-        margin-bottom: 10vh;
+        top: 0;
+    }
+    .playlists-page-div {
+        padding-bottom: 12vh;
     }
 }
 

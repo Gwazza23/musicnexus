@@ -44,7 +44,7 @@ function Artists() {
           </p>
         </div>
       </div>
-      <div className="user-top-page-div">
+      <div className="user-top-page-div artist-page">
         {artists?.map((artist) => {
           return (
             <div className="user-top-page-card" key={artist.id}>
