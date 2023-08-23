@@ -30,7 +30,7 @@ const fetchTrack = createAsyncThunk("tracks/track", async (id) => {
 const fetchRecommendedTrack = createAsyncThunk(
   "tracks/recommended",
   async (seeds) => {
-    const response = await getUserRecommendation(seeds[0], seeds[1]);
+    const response = await getUserRecommendation(seeds);
     return response.data;
   }
 );

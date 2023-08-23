@@ -1,20 +1,34 @@
 import "./UserTop.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserTopTrack, selectTracks } from "../../Slices/tracksSlice";
+import {
+  fetchUserTopTrack,
+  selectTracks,
+  fetchRecommendedTrack,
+} from "../../Slices/tracksSlice";
 import { useNavigate } from "react-router-dom";
+import { getSeeds } from "../../Util/functions";
 
 function Tracks() {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [sort, setSort] = useState("long_term");
 
   const tracks = useSelector(selectTracks).data?.items;
+  const recommended = useSelector(selectTracks).recommended?.tracks?.slice(
+    0,
+    3
+  );
+
+  console.log(recommended);
+
+  const seeds = getSeeds(tracks?.slice(0, 5));
 
   useEffect(() => {
     dispatch(fetchUserTopTrack(sort));
-  }, [dispatch, sort]);
+    dispatch(fetchRecommendedTrack(seeds));
+  }, [dispatch, sort, seeds]);
 
   return (
     <div className="user-top-page-container">
@@ -44,22 +58,43 @@ function Tracks() {
       <div className="user-top-page-div">
         {tracks?.map((track) => {
           return (
-            <div className="user-top-page-card" key={track.id} onClick={() => {
-              navigate(`/home/tracks/${track.id}`)
-            }} >
+            <div
+              className="user-top-page-card"
+              key={track.id}
+              onClick={() => {
+                navigate(`/home/tracks/${track.id}`);
+              }}
+            >
               <div className="user-top-page-image-div">
                 <img src={track.album.images[0].url} alt={track.name} />
               </div>
               <div className="user-top-page-info-div">
                 <h3>{track.name}</h3>
                 <ul>
-                  <li><i>{track.album.name}</i></li>
+                  <li>
+                    <i>{track.album.name}</i>
+                  </li>
                   <li>{track.artists[0]?.name}</li>
                 </ul>
               </div>
             </div>
           );
         })}
+      </div>
+      <div className="user-top-page-reccom-container">
+        <h2>Recommened Tracks</h2>
+        <div className="user-top-page-reccom-div" >
+          {recommended &&
+            recommended.map((track) => {
+              return (
+                <div className="reccom-div">
+                  <img src={track.album.images[0].url} />
+                  <h3>{track.name}</h3>
+                  <h4>{track.artists[0].name}</h4>
+                </div>
+              );
+            })}
+        </div>
       </div>
     </div>
   );

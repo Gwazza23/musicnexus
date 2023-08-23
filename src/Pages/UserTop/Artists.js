@@ -1,7 +1,9 @@
 import "./UserTop.css";
+import "../../App.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserTopArtists, selectArtists } from "../../Slices/artistsSlice";
+import { getSeeds } from "../../Util/functions";
 
 function Artists() {
   const dispatch = useDispatch();
@@ -9,10 +11,13 @@ function Artists() {
   const [sort, setSort] = useState("long_term");
 
   const artists = useSelector(selectArtists).data?.items;
+  
+
+  const seeds = getSeeds(artists?.slice(0, 5));
 
   useEffect(() => {
     dispatch(fetchUserTopArtists(sort));
-  }, [dispatch, sort]);
+  }, [dispatch, sort, seeds]);
 
   return (
     <div className="user-top-page-container">

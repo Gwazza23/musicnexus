@@ -1,3 +1,8 @@
+.user-top-page-container {
+  position: relative;
+  top: 10vh;
+}
+
 .user-top-page-header,
 .user-top-page-sort {
   display: flex;
@@ -6,14 +11,16 @@
   justify-content: space-between;
   margin: 5vh 3vw;
 }
-.artist-page-header h1 {
+.user-top-page-header h1 {
+  color: var(--primary);
   text-decoration: underline;
-  text-decoration-color: var(--primary);
+  text-decoration-color: var(--tertiary);
 }
 .user-top-page-sort {
   align-items: center;
 }
 .user-top-page-sort p {
+  color: var(--primary);
   cursor: pointer;
   margin: 0px 10px;
 }
@@ -27,7 +34,7 @@
 .user-top-page-card {
   display: flex;
   cursor: pointer;
-  background: var(--background-light);
+  background: var(--primary);
   width: calc(33.33% - 20px);
   margin: 10px;
   height: fit-content;
@@ -51,8 +58,56 @@
   list-style: none;
   color: var(--primary-light);
 }
-.user-top-page-card:hover {
-  background: var(--background-hover-lighter);
+
+.user-top-page-reccom-container {
+  margin-top: 5vh;
+  height: fit-content;
+  background-color: var(--primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-top-page-reccom-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin: 5vh;
+}
+
+.user-top-page-reccom-div {
+  display: flex;
+  min-width: 80vw;
+  margin-bottom: 5vh;
+}
+
+.reccom-div {
+  cursor: pointer;
+  border-radius: 30px;
+  background-color: var(--secondary);
+  margin: 0px auto;
+  width: 20vw;
+}
+
+.reccom-div h3,
+h4 {
+  text-align: center;
+  width: fit-content;
+  margin: 10px auto;
+  height: fit-content;
+}
+
+.reccom-div h3 {
+  color: var(--primary);
+}
+.reccom-div h4 {
+  color: var(--tertiary);
+}
+.reccom-div img {
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
+  width: 20vw;
+  height: 20vw;
 }
 
 @media only screen and (max-width: 425px) {
@@ -72,6 +127,17 @@
   .user-top-page-card {
     min-width: 90vw;
   }
+
+  .user-top-page-reccom-div {
+    flex-direction: column;
+  }
+  .reccom-div {
+    min-width: 70vw;
+  }
+  .reccom-div img {
+    min-width: 70vw;
+    min-height: 70vw;
+  }
 }
 
 @media only screen and (max-width: 320px) {
@@ -88,13 +154,28 @@
     align-items: center;
   }
   .user-top-page-container {
-    margin-bottom: 10vh;
+    top: 0;
   }
   .user-top-page-sort {
     margin: 20px 0px 10px 0px;
+    font-weight: 700;
   }
   .user-top-page-div {
     padding: 1vh;
+    margin-bottom: 10vh;
+  }
+
+  .user-top-page-reccom-div {
+    min-width: fit-content;
+    margin-bottom: 12vh;
+  }
+  .reccom-div {
+    width: 30vw;
+    margin: 10px 5px;
+  }
+  .reccom-div img {
+    width: 30vw;
+    height: 30vw;
   }
 }
 

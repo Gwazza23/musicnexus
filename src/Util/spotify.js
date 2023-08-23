@@ -134,10 +134,10 @@ export async function getUserTop(type, time_range) {
   }
 }
 
-export async function getUserRecommendation(artistseeds, tracksseeds) {
+export async function getUserRecommendation(seeds) {
   const accessToken = retrieveAccessToken();
   try {
-    let url = `https://api.spotify.com/v1/recommendations?seed_artists=${artistseeds}&seed_tracks=${tracksseeds}`;
+    let url = `https://api.spotify.com/v1/recommendations?seed_tracks=${seeds}`;
     const response = await axios.get(url, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
