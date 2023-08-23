@@ -14,3 +14,22 @@ export function getSeeds(array) {
   }
   return seeds.join(",");
 }
+
+export function convertKey(key) {
+  const notation = [
+    "C",
+    "C♯/ D♭",
+    "D",
+    "D♯/ E♭",
+    "E",
+    "F",
+    "F♯/ G♭",
+    "G",
+    "G♯/ A♭",
+    "A",
+    "A♯/ B♭",
+    "B",
+  ];
+  const keyHTML = key % 11;
+  return notation[keyHTML];
+}

@@ -1,8 +1,13 @@
+.track-page-container {
+  position: relative;
+  top: 12vh;
+}
+
 .track-page-header {
   display: flex;
   margin: 1vh;
   padding: 2vh;
-  background-color: black;
+  background-color: var(--primary);
   box-shadow: 0px 0px 2px black;
 }
 .track-page-header img {
@@ -17,6 +22,18 @@
   width:50vw;
 }
 
+.track-page-header-info a{
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--tertiary);
+  font-weight: 700;
+  border-radius: 30px;
+  width: fit-content;
+  margin: auto 0px;
+  background-color: var(--secondary);
+  padding: 15px;
+}
+
 .track-page-artists {
   display: flex;
 }
@@ -25,4 +42,65 @@
 }
 .track-page-header h3, .track-page-artists {
   margin-top: 10px;
+}
+
+.track-page-features {
+  padding: 2vh;
+  background-color: var(--primary);
+  margin: 2vh 1vh;
+}
+.track-page-features h2 {
+  text-align: center;
+  margin: 1vh 0vw 1.8vh 0vh;
+}
+.track-page-features table {
+  background-color: rgba(225, 225, 225, 0.3);
+  color: var(--secondary);
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+.track-page-features table td {
+  width: 25%;
+  padding: 5vh;
+  text-align: center;
+  border: 0.5px solid rgba(0, 0, 0, 0.5);
+}
+.track-page-features table td h4 {
+  font-size: 1.4rem;
+}
+.track-page-features table td p {
+  font-family: 500;
+}
+
+@media only screen and ( max-width: 425px ) {
+  .track-page-header {
+    flex-direction: column;
+    align-items: center;
+  }
+  .track-page-header-info {
+    align-items: center;
+    margin: 10px 0px;
+  }
+  .track-page-header-info a {
+    margin-top: 20px;
+  }
+
+  .track-page-features table td {
+    display: inline-block;
+    min-width: 100%;
+  }
+}
+
+@media only screen and ( max-width: 768px ) {
+  .track-page-container {
+    top: 0vh;
+  }
+  .track-page-features table td {
+    display: inline-block;
+    width: 50%;
+  }
+  .track-page-features table td h4 {
+    font-size: 1.2rem;
+  }
 }

@@ -113,7 +113,7 @@ export async function getUserFollowing() {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-    return response
+    return response;
   } catch (error) {
     console.error("Error fetching playlists", error);
   }
@@ -183,6 +183,21 @@ export async function getTrack(id) {
     return response;
   } catch (error) {
     console.error("Error fetching track information", error);
+  }
+}
+
+export async function getTrackFeatures(id) {
+  const accessToken = retrieveAccessToken();
+  try {
+    let url = `https://api.spotify.com/v1/audio-analysis/${id}`;
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error("Error fetching track features", error);
   }
 }
 
