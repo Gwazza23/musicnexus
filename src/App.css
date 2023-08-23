@@ -1,12 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700&display=swap");
 
 :root {
-  --primary: #ff1212;
-  --primary-light: #ff4545;
-  --background: #212121;
-  --background-light: #2e2e2e;
-  --background-hover-lighter: #505050 ;
-  --background-hover: #1a1a1a;
+  --primary: rgba(43, 174, 102, 1);
+  --secondary: rgba(252, 246, 245, 1);
+  --tertiary: rgba(32, 43, 61, 1);
 }
 
 * {
@@ -16,12 +13,13 @@
 }
 
 body {
-  background-color: #212121;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: rgb(252, 246, 245);
+  height: 100vh;
+  font-family: "Plus Jakarta Sans", sans-serif;
   color: white;
 }
 button {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 .underline {

@@ -1,5 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getRecentlyPlayedTracks, getTrack, getUserTop } from "../Util/spotify";
+import {
+  getRecentlyPlayedTracks,
+  getTrack,
+  getUserRecommendation,
+  getUserTop,
+} from "../Util/spotify";
 
 const fetchUserTopTrack = createAsyncThunk(
   "tracks/topTracks",
@@ -22,10 +27,19 @@ const fetchTrack = createAsyncThunk("tracks/track", async (id) => {
   return response.data;
 });
 
+const fetchRecommendedTrack = createAsyncThunk(
+  "tracks/recommended",
+  async (seeds) => {
+    const response = await getUserRecommendation(seeds[0], seeds[1]);
+    return response.data;
+  }
+);
+
 const tracksSlice = createSlice({
   name: "userTracks",
   initialState: {
     data: [],
+    recommended: [],
     recent: [],
     status: "idle",
     error: null,
@@ -64,11 +78,27 @@ const tracksSlice = createSlice({
       .addCase(fetchTrack.rejected, (state, action) => {
         state.status = "rejected";
         state.error = action.error.message;
+      })
+      .addCase(fetchRecommendedTrack.pending, (state) => {
+        state.status = "pending";
+      })
+      .addCase(fetchRecommendedTrack.fulfilled, (state, action) => {
+        state.status = "completed";
+        state.recommended = action.payload;
+      })
+      .addCase(fetchRecommendedTrack.rejected, (state, action) => {
+        state.status = "rejected";
+        state.error = action.error.message;
       });
   },
 });
 
-export { fetchUserTopTrack, fetchUserRecentTracks, fetchTrack };
+export {
+  fetchUserTopTrack,
+  fetchUserRecentTracks,
+  fetchTrack,
+  fetchRecommendedTrack,
+};
 
 export default tracksSlice.reducer;
 

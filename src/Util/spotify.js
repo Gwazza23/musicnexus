@@ -113,7 +113,7 @@ export async function getUserFollowing() {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-    return response;
+    return response
   } catch (error) {
     console.error("Error fetching playlists", error);
   }
@@ -130,7 +130,23 @@ export async function getUserTop(type, time_range) {
     });
     return response;
   } catch (error) {
-    console.error("Error fetching top artists", error);
+    console.error(`Error fetching top ${type}`, error);
+  }
+}
+
+export async function getUserRecommendation(artistseeds, tracksseeds) {
+  const accessToken = retrieveAccessToken();
+  try {
+    let url = `https://api.spotify.com/v1/recommendations?seed_artists=${artistseeds}&seed_tracks=${tracksseeds}`;
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error(`Error fetching recommendations`, error);
+    throw error;
   }
 }
 
@@ -180,6 +196,42 @@ export async function getUserPlaylists() {
   const accessToken = retrieveAccessToken();
   try {
     let url = `https://api.spotify.com/v1/me/playlists`;
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error("Error fetching user playlists", error);
+  }
+}
+
+/* 
+ --------------
+|   playback   |
+ --------------
+*/
+
+export async function getPlaybackState() {
+  const accessToken = retrieveAccessToken();
+  try {
+    let url = `https://api.spotify.com/v1/me/player`;
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error("Error fetching user playlists", error);
+  }
+}
+
+export async function getAvailableDevices() {
+  const accessToken = retrieveAccessToken();
+  try {
+    let url = `https://api.spotify.com/v1/me/player/devices`;
     const response = await axios.get(url, {
       headers: {
         Authorization: `Bearer ${accessToken}`,

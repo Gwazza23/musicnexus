@@ -46,10 +46,10 @@ function NavBar() {
             <PiPlaylistFill />
             <p>Playlists</p>
           </NavLink>
-          <button onClick={handleLogout}>
+          <div onClick={handleLogout}>
             <BiExit />
             <p>Log out</p>
-          </button>
+          </div>
         </div>
       </nav>
       <Outlet />

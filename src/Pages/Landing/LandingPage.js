@@ -9,7 +9,8 @@ function LandingPage() {
     const codeVerifier = generateRandomString(126);
     await generateCodeChallenge(codeVerifier).then((codeChallenge) => {
       let state = generateRandomString(16);
-      let scope = "user-read-private user-read-email user-follow-read user-top-read user-read-recently-played playlist-read-private";
+      let scope =
+        "user-read-private user-read-email user-follow-read user-top-read user-read-recently-played playlist-read-private streaming user-read-playback-state user-modify-playback-state";
 
       localStorage.setItem("code_verifier", codeVerifier);
 
@@ -19,13 +20,11 @@ function LandingPage() {
         scope: scope,
         redirect_uri: "http://localhost:3000/callback",
         state: state,
-        code_challenge_method: 'S256',
-        code_challenge: codeChallenge
+        code_challenge_method: "S256",
+        code_challenge: codeChallenge,
       });
 
-      window.open(
-        "https://accounts.spotify.com/authorize?" + args, "_self"
-      )
+      window.open("https://accounts.spotify.com/authorize?" + args, "_self");
     });
   };
 

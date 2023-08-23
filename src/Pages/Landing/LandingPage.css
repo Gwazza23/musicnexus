@@ -20,7 +20,7 @@
   padding: 15px;
   border-radius: 25px;
   color: white;
-  font-family: "Quicksand";
+  font-family: "Plus Jakarta Sans";
 }
 .spotify-login:hover {
   background-color: var(--primary-light);
