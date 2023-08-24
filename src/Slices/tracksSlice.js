@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
   getRecentlyPlayedTracks,
   getTrack,
+  getTrackAnalysis,
   getTrackFeatures,
   getUserRecommendation,
   getUserTop,
@@ -41,6 +42,11 @@ const fetchAudioFeatures = createAsyncThunk("tracks/features", async (id) => {
   return response.data;
 });
 
+const fetchAudioAnalysis = createAsyncThunk("tracks/analysis", async (id) => {
+  const response = await getTrackAnalysis(id);
+  return response.data;
+});
+
 const tracksSlice = createSlice({
   name: "userTracks",
   initialState: {
@@ -48,6 +54,7 @@ const tracksSlice = createSlice({
     recommended: [],
     recent: [],
     features: [],
+    analysis: [],
     status: "idle",
     error: null,
   },
@@ -107,6 +114,17 @@ const tracksSlice = createSlice({
       .addCase(fetchAudioFeatures.rejected, (state, action) => {
         state.status = "rejected";
         state.error = action.error.message;
+      })
+      .addCase(fetchAudioAnalysis.pending, (state) => {
+        state.status = "pending";
+      })
+      .addCase(fetchAudioAnalysis.fulfilled, (state, action) => {
+        state.status = "completed";
+        state.analysis = action.payload;
+      })
+      .addCase(fetchAudioAnalysis.rejected, (state, action) => {
+        state.status = "rejected";
+        state.error = action.error.message;
       });
   },
 });
@@ -117,6 +135,7 @@ export {
   fetchTrack,
   fetchRecommendedTrack,
   fetchAudioFeatures,
+  fetchAudioAnalysis,
 };
 
 export default tracksSlice.reducer;

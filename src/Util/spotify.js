@@ -201,6 +201,21 @@ export async function getTrackFeatures(id) {
   }
 }
 
+export async function getTrackAnalysis(id) {
+  const accessToken = retrieveAccessToken();
+  try {
+    let url = `https://api.spotify.com/v1/audio-features/${id}`;
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error("Error fetching track analysis", error);
+  }
+}
+
 /* 
  ---------------
 |   playlists   |

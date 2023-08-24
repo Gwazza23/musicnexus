@@ -17,9 +17,11 @@ import {
   fetchUserPlaylists,
   selectPlaylists,
 } from "../../Slices/playlistsSlice";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const data = useSelector(selectUser);
   const artists = useSelector(selectArtists).data?.items?.slice(0, 5);
@@ -80,7 +82,9 @@ function Home() {
             <div className="home-tracks-list">
               {tracks.map((track, index) => {
                 return (
-                  <div className="home-tracks-list-div" key={track.id}>
+                  <div className="home-tracks-list-div" key={track.id} onClick={() => {
+                    navigate(`/home/tracks/${track.id}`)
+                  }} >
                     <p>{index + 1}.</p>
                     <img src={track.album.images[1].url} alt={track.name} />
                     <h3>{track.name}</h3>

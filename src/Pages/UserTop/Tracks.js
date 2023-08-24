@@ -21,8 +21,6 @@ function Tracks() {
     3
   );
 
-  console.log(recommended);
-
   const seeds = getSeeds(tracks?.slice(0, 5));
 
   useEffect(() => {
@@ -83,12 +81,14 @@ function Tracks() {
       </div>
       <div className="user-top-page-reccom-container">
         <h2>Recommened Tracks</h2>
-        <div className="user-top-page-reccom-div" >
+        <div className="user-top-page-reccom-div">
           {recommended &&
             recommended.map((track) => {
               return (
-                <div className="reccom-div">
-                  <img src={track.album.images[0].url} />
+                <div className="reccom-div" onClick={() => { 
+                  navigate(`/home/tracks/${track.id}`)
+                }} >
+                  <img src={track.album.images[0].url} alt={track.name} />
                   <h3>{track.name}</h3>
                   <h4>{track.artists[0].name}</h4>
                 </div>

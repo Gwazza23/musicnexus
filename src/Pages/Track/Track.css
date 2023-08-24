@@ -1,6 +1,7 @@
 .track-page-container {
   position: relative;
   top: 12vh;
+  padding-bottom: 1vh;
 }
 
 .track-page-header {
@@ -19,10 +20,10 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width:50vw;
+  width: 50vw;
 }
 
-.track-page-header-info a{
+.track-page-header-info a {
   text-decoration: none;
   cursor: pointer;
   color: var(--tertiary);
@@ -40,7 +41,8 @@
 .track-page-artists h3 {
   margin-right: 10px;
 }
-.track-page-header h3, .track-page-artists {
+.track-page-header h3,
+.track-page-artists {
   margin-top: 10px;
 }
 
@@ -73,26 +75,39 @@
   font-family: 500;
 }
 
-@media only screen and ( max-width: 425px ) {
-  .track-page-header {
-    flex-direction: column;
-    align-items: center;
-  }
-  .track-page-header-info {
-    align-items: center;
-    margin: 10px 0px;
-  }
-  .track-page-header-info a {
-    margin-top: 20px;
-  }
+.track-page-analysis {
+  background-color: var(--primary);
+  margin: 2vh 1vh;
+  padding: 1vh;
+}
 
+.track-page-analysis h2 {
+  text-align: center;
+  margin: 1vh 0vw 1.8vh 0vh;
+}
+
+@media only screen and (max-width: 425px) {
   .track-page-features table td {
     display: inline-block;
     min-width: 100%;
   }
 }
 
-@media only screen and ( max-width: 768px ) {
+@media only screen and (max-width: 768px) {
+  .track-page-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .track-page-header-info {
+    align-items: center;
+    margin: 10px 0px;
+  }
+
+  .track-page-header-info a {
+    margin-top: 20px;
+  }
+
   .track-page-container {
     top: 0vh;
   }
@@ -102,5 +117,9 @@
   }
   .track-page-features table td h4 {
     font-size: 1.2rem;
+  }
+
+  .track-page-analysis {
+    margin-bottom: 12vh;
   }
 }
