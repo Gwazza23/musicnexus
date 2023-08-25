@@ -108,6 +108,11 @@ export const chartOptions = {
       beginAtZero: true,
       display: false,
     },
+    x: {
+      ticks: {
+        color: "rgba(252, 246, 245, 1)",
+      },
+    },
   },
   plugins: {
     legend: {

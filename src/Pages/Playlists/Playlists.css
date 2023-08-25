@@ -1,6 +1,6 @@
 .playlists-page-container {
-    position: relative;
-    top: 10vh;
+  position: relative;
+  top: 10vh;
 }
 
 .playlists-page-header {
@@ -8,8 +8,8 @@
   color: var(--primary);
 }
 .playlists-page-header h1 {
-    text-decoration: underline;
-    text-decoration-color: var(--tertiary);
+  text-decoration: underline;
+  text-decoration-color: var(--tertiary);
 }
 
 .playlists-page-div {
@@ -28,10 +28,10 @@
 }
 
 .playlists-page-image-div {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
   padding: 1vh;
-  background-color: rgba(225, 225, 225, 0.25);
+  background-color: var(--tertiary);
   width: fit-content;
 }
 
@@ -47,50 +47,50 @@
 }
 
 .playlists-page-info-div ul {
-    margin: 10px 2px;
-    list-style: none;
-    color: var(--primary-light);
+  margin: 10px 2px;
+  list-style: none;
+  color: var(--primary-light);
 }
 
 .playlists-page-info-div ul span {
-    color: white;
-    margin-left: 5px;
-    max-height: min-content;
+  color: white;
+  margin-left: 5px;
+  max-height: min-content;
 }
 
-@media only screen and (max-width: 425px ) {
-    .playlists-page-info-div h3 {
-        font-size: 1rem;
-    }
-    .playlists-page-info-div li {
-        font-size: 0.8rem;
-    }
-    .playlists-page-div img {
-        width: 105px;
-        height: 105px;
-    }
-    .playlists-page-card {
-        min-width: 90vw;
-    }
+@media only screen and (max-width: 425px) {
+  .playlists-page-info-div h3 {
+    font-size: 1rem;
+  }
+  .playlists-page-info-div li {
+    font-size: 0.8rem;
+  }
+  .playlists-page-div img {
+    width: 105px;
+    height: 105px;
+  }
+  .playlists-page-card {
+    min-width: 90vw;
+  }
 }
 
-@media only screen and (max-width: 768px ) {
-    .playlists-page-header,
-    .playlists-page-div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .playlists-page-container {
-        top: 0;
-    }
-    .playlists-page-div {
-        padding-bottom: 12vh;
-    }
+@media only screen and (max-width: 768px) {
+  .playlists-page-header,
+  .playlists-page-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .playlists-page-container {
+    top: 0;
+  }
+  .playlists-page-div {
+    padding-bottom: 12vh;
+  }
 }
 
 @media only screen and ((min-width: 425px) and (max-width: 768px)) {
-    .playlists-page-card {
-        min-width:  85vw;
-    }
+  .playlists-page-card {
+    min-width: 85vw;
+  }
 }

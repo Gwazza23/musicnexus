@@ -29,8 +29,10 @@
 }
 
 .recent-page-image-div {
+  display: flex;
+  align-items: center;
   padding: 1vh;
-  background-color: rgba(225, 225, 225, 0.25);
+  background-color: var(--tertiary);
   width: fit-content;
 }
 .recent-page-image-div img {

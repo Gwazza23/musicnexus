@@ -130,7 +130,6 @@ h4 {
   cursor: pointer;
   width: 90%;
   background-color: var(--secondary);
-  border: 1.5px solid var(--tertiary);
   border-radius: 30px;
   display: flex;
   align-items: center;
@@ -178,7 +177,6 @@ h4 {
   cursor: pointer;
   width: 90%;
   background-color: var(--primary);
-  border: 1.5px solid var(--tertiary);
   border-radius: 30px;
   display: flex;
   align-items: center;

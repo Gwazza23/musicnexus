@@ -41,7 +41,7 @@
 }
 .user-top-page-image-div {
   padding: 1vh;
-  background-color: rgba(225, 225, 225, 0.25);
+  background-color: var(--tertiary);
   width: fit-content;
 }
 .user-top-page-card img {

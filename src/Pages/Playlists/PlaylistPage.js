@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./PlaylistPage.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchPlaylist,
@@ -22,12 +22,15 @@ function PlaylistPage() {
   const [smallScreen, setSmallScreen] = useState(false);
   const [coverImage, setCoverImage] = useState(null);
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
 
   const playlist = useSelector(selectPlaylists)?.data;
   const playlistFeatures =
     useSelector(selectPlaylists)?.features?.audio_features;
+
+  console.log(playlist);
 
   const playlistDuration = getPlaylistDuration(playlist);
 
@@ -105,11 +108,7 @@ function PlaylistPage() {
             <h2>{playlist.name}</h2>
             <img src={coverImage?.url} alt={playlist.name} />
             <div className="playlist-page-header-info">
-              {playlist.description && (
-                <h3>
-                  {playlist.description}
-                </h3>
-              )}
+              {playlist.description && <h3>{playlist.description}</h3>}
               <table>
                 <tr>
                   <td>
@@ -143,7 +142,31 @@ function PlaylistPage() {
             )}
           </div>
         </div>
-        <div className="playlist-page-section-two"></div>
+        <div className="playlist-page-section-two">
+          <div className="playlist-page-list-container">
+            {playlist?.tracks?.items?.map((item) => {
+              return (
+                <div
+                  className="playlist-page-track-div"
+                  onClick={() => {
+                    navigate(`/home/tracks/${item.track.id}`);
+                  }}
+                >
+                  <img src={item.track.album.images[0].url} />
+                  <div className="playlist-page-track-div-info">
+                    <h2>{item.track.name}</h2>
+                    <div className="playlist-page-track-div-artists">
+                      {item.track.artists.map((artist) => {
+                        return <h3>{artist.name}</h3>;
+                      })}
+                    </div>
+                    <h3>{item.track.album.name}</h3>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     )
   );
