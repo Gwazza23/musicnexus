@@ -3,9 +3,11 @@ import "./Recent.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserRecentTracks, selectTracks } from "../../Slices/tracksSlice";
 import { msToMinutesAndSeconds } from "../../Util/functions";
+import { useNavigate } from "react-router-dom";
 
 function Recent() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const recent = useSelector(selectTracks).recent.items;
   useEffect(() => {
@@ -19,7 +21,13 @@ function Recent() {
       <div className="recent-page-div">
         {recent?.map((track) => {
           return (
-            <div className="recent-page-card">
+            <div
+              className="recent-page-card"
+              onClick={() => {
+                navigate(`/home/tracks/${track.track.id}`);
+              }}
+              key={track.track.id}
+            >
               <div className="recent-page-image-div">
                 <img
                   src={track.track.album.images[0].url}

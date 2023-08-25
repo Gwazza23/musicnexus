@@ -237,6 +237,51 @@ export async function getUserPlaylists() {
   }
 }
 
+export async function getPlaylist(id) {
+  const accessToken = retrieveAccessToken();
+  try {
+    let url = `https://api.spotify.com/v1/playlists/${id}`;
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error("Error fetching playlist", error);
+  }
+}
+
+export async function getPlaylistCoverImage(id) {
+  const accessToken = retrieveAccessToken();
+  try {
+    let url = `https://api.spotify.com/v1/playlists/${id}/images`;
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error("Error fetching playlist cover image", error);
+  }
+}
+
+export async function getPlaylistFeatures(ids) {
+  const accessToken = retrieveAccessToken();
+  try {
+    let url = `https://api.spotify.com/v1/audio-features?ids=${ids}`;
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error("Error fetching playlist features", error);
+  }
+}
+
 /* 
  --------------
 |   playback   |

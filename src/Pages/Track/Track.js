@@ -9,40 +9,19 @@ import {
 } from "../../Slices/tracksSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Player from "../../Util/Player";
-import { convertKey } from "../../Util/functions";
+import { chartOptions, chartColors ,convertKey } from "../../Util/functions";
 import { Bar, Doughnut } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 
 function Track() {
   const [smallScreen, setSmallScreen] = useState(false);
   const dispatch = useDispatch();
+
   const track = useSelector(selectTracks)?.data;
-  const features = useSelector(selectTracks).features;
-  const analysis = useSelector(selectTracks).analysis;
-  console.log(analysis);
+  const features = useSelector(selectTracks)?.features;
+  const analysis = useSelector(selectTracks)?.analysis;
 
   Chart.register(...registerables);
-
-  const chartColors = [
-    [
-      "rgba(171,94,7,1)",
-      "rgba(0,54,255,1)",
-      "rgba(229,245,31,1)",
-      "rgba(123,123,121,1)",
-      "rgba(255,128,0,1)",
-      "rgba(58,255,0,1)",
-      "rgba(151,0,255,1 )",
-    ],
-    [
-      "rgba(171,94,7,0.6)",
-      "rgba(0,54,255,0.6)",
-      "rgba(229,245,31,0.6)",
-      "rgba(123,123,121,0.6)",
-      "rgba(255,128,0,0.6)",
-      "rgba(58,255,0,0.6)",
-      "rgba(151,0,255,0.6)",
-    ],
-  ];
 
   const state = {
     labels: [
@@ -76,24 +55,13 @@ function Track() {
     ],
   };
 
-  const options = {
-    scales: {
-      y: {
-        beginAtZero: true,
-        display: false,
-      },
-    },
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
-  };
-
   const { id } = useParams();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }, []);
 
   useEffect(() => {
@@ -114,6 +82,7 @@ function Track() {
     dispatch(fetchAudioFeatures(id));
     dispatch(fetchAudioAnalysis(id));
   }, [dispatch, id]);
+
   return (
     track && (
       <div className="track-page-container">
@@ -188,9 +157,9 @@ function Track() {
         <div className="track-page-analysis">
           <h2>Track Analysis</h2>
           {smallScreen ? (
-            <Doughnut data={state} options={options}></Doughnut>
+            <Doughnut data={state} options={chartOptions}></Doughnut>
           ) : (
-            <Bar data={state} options={options}></Bar>
+            <Bar data={state} options={chartOptions}></Bar>
           )}
         </div>
       </div>

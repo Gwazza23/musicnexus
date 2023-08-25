@@ -5,9 +5,12 @@ import {
   fetchUserPlaylists,
   selectPlaylists,
 } from "../../Slices/playlistsSlice";
+import { useNavigate } from "react-router-dom";
 
 function Playlists() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const playlists = useSelector(selectPlaylists).data?.items;
 
   useEffect(() => {
@@ -21,7 +24,13 @@ function Playlists() {
       <div className="playlists-page-div">
         {playlists?.map((playlist) => {
           return (
-            <div className="playlists-page-card" key={playlist.id}>
+            <div
+              className="playlists-page-card"
+              key={playlist.id}
+              onClick={() => {
+                navigate(`/home/playlist/${playlist.id}`);
+              }}
+            >
               <div className="playlists-page-image-div">
                 <img src={playlist.images[0].url} alt={playlist.name} />
               </div>
