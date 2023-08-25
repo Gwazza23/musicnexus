@@ -30,7 +30,7 @@ function LandingPage() {
 
   return (
     <div className="landing-page-container">
-      <img src="/images/full-logo.png" alt="music nexus logo" />
+      <img src="/images/MusicNexus.png" alt="music nexus logo" />
       <div className="spotify-login" onClick={handleLogIn}>
         Log in with spotify
       </div>

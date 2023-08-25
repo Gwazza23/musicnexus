@@ -23,5 +23,5 @@
   font-family: "Plus Jakarta Sans";
 }
 .spotify-login:hover {
-  background-color: var(--primary-light);
+  background-color: var(--tertiary);
 }
