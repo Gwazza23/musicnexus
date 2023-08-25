@@ -82,9 +82,13 @@ function Home() {
             <div className="home-tracks-list">
               {tracks.map((track, index) => {
                 return (
-                  <div className="home-tracks-list-div" key={track.id} onClick={() => {
-                    navigate(`/home/tracks/${track.id}`)
-                  }} >
+                  <div
+                    className="home-tracks-list-div"
+                    key={track.id}
+                    onClick={() => {
+                      navigate(`/home/tracks/${track.id}`);
+                    }}
+                  >
                     <p>{index + 1}.</p>
                     <img src={track.album.images[1].url} alt={track.name} />
                     <h3>{track.name}</h3>
@@ -99,7 +103,13 @@ function Home() {
             <div className="home-artists-list">
               {artists.map((artist, index) => {
                 return (
-                  <div className="home-artists-list-div" key={artist.id}>
+                  <div
+                    className="home-artists-list-div"
+                    key={artist.id}
+                    onClick={() => {
+                      navigate(`/home/artists/${artists.id}`);
+                    }}
+                  >
                     <p>{index + 1}.</p>
                     <img
                       width="125px"

@@ -1,0 +1,5 @@
+.artist-page-container {
+  border: 5px solid red;
+  position: relative;
+  top: 10vh;
+}

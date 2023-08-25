@@ -4,14 +4,15 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserTopArtists, selectArtists } from "../../Slices/artistsSlice";
 import { getSeeds } from "../../Util/functions";
+import { useNavigate } from "react-router-dom";
 
 function Artists() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [sort, setSort] = useState("long_term");
 
   const artists = useSelector(selectArtists).data?.items;
-  
 
   const seeds = getSeeds(artists?.slice(0, 5));
 
@@ -47,7 +48,13 @@ function Artists() {
       <div className="user-top-page-div artist-page">
         {artists?.map((artist) => {
           return (
-            <div className="user-top-page-card" key={artist.id}>
+            <div
+              className="user-top-page-card"
+              key={artist.id}
+              onClick={() => {
+                navigate(`/home/artists/${artist.id}`);
+              }}
+            >
               <div className="user-top-page-image-div">
                 <img src={artist.images[0].url} alt={artist.name} />
               </div>

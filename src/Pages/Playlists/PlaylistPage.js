@@ -152,7 +152,10 @@ function PlaylistPage() {
                     navigate(`/home/tracks/${item.track.id}`);
                   }}
                 >
-                  <img src={item.track.album.images[0].url} />
+                  <img
+                    src={item.track.album.images[0].url}
+                    alt={item.track.name}
+                  />
                   <div className="playlist-page-track-div-info">
                     <h2>{item.track.name}</h2>
                     <div className="playlist-page-track-div-artists">

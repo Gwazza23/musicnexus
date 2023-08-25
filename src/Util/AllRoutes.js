@@ -10,6 +10,7 @@ import Recent from "../Pages/Recent/Recent";
 import Playlists from "../Pages/Playlists/Playlists";
 import Track from "../Pages/Track/Track";
 import PlaylistPage from "../Pages/Playlists/PlaylistPage";
+import Artist from "../Pages/Artist/Artist";
 
 function AllRoutes() {
   const location = useLocation();
@@ -27,6 +28,7 @@ function AllRoutes() {
           <Route path="/home/playlists" element={<Playlists />} />
           <Route path="/home/tracks/:id" element={<Track />} />
           <Route path="/home/playlist/:id" element={<PlaylistPage />} />
+          <Route path="/home/artists/:id" element={<Artist />} />
         </Route>
       </Routes>
     </AnimatePresence>

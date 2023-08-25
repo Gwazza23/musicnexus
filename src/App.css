@@ -16,7 +16,7 @@ body {
   background: rgb(252, 246, 245);
   height: 100vh;
   font-family: "Plus Jakarta Sans", sans-serif;
-  color: white;
+  color: var(--tertiary)
 }
 button {
   font-family: "Plus Jakarta Sans", sans-serif;
