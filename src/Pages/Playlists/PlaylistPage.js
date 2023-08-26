@@ -30,8 +30,6 @@ function PlaylistPage() {
   const playlistFeatures =
     useSelector(selectPlaylists)?.features?.audio_features;
 
-  console.log(playlist);
-
   const playlistDuration = getPlaylistDuration(playlist);
 
   Chart.register(...registerables);

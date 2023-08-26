@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getUserTop } from "../Util/spotify";
+import { getArtistInfo, getUserTop } from "../Util/spotify";
 
 const fetchUserTopArtists = createAsyncThunk(
   "artists/topArtists",
@@ -8,6 +8,11 @@ const fetchUserTopArtists = createAsyncThunk(
     return response.data;
   }
 );
+
+const fetchArtistInfo = createAsyncThunk("artists/info", async (id) => {
+  const response = await getArtistInfo(id);
+  return response.data;
+});
 
 const artistsSlice = createSlice({
   name: "userArtists",
@@ -28,11 +33,22 @@ const artistsSlice = createSlice({
       .addCase(fetchUserTopArtists.rejected, (state, action) => {
         state.status = "rejected";
         state.data = action.error.message;
+      })
+      .addCase(fetchArtistInfo.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchArtistInfo.fulfilled, (state, action) => {
+        state.status = "completed";
+        state.data = action.payload;
+      })
+      .addCase(fetchArtistInfo.rejected, (state, action) => {
+        state.status = "rejected";
+        state.error = action.error.message;
       });
   },
 });
 
-export { fetchUserTopArtists };
+export { fetchUserTopArtists, fetchArtistInfo };
 
 export default artistsSlice.reducer;
 
