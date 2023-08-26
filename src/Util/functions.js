@@ -2,10 +2,9 @@ export function msToMinutesAndSeconds(ms) {
   const totalSeconds = Math.floor(ms / 1000);
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
-  const formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  const formattedTime = `${minutes}:${seconds.toString().padStart(2, "0")}`;
   return formattedTime;
 }
-
 
 export function getSeeds(array) {
   let seeds = [];
@@ -22,6 +21,16 @@ export function getIds(array) {
   if (array) {
     for (const track of array) {
       ids.push(track.track.id);
+    }
+  }
+  return ids.join(",");
+}
+
+export function getArtistTrackIds(array) {
+  let ids = [];
+  if (array) {
+    for (const track of array) {
+      ids.push(track.id);
     }
   }
   return ids.join(",");
