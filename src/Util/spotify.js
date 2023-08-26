@@ -252,6 +252,24 @@ export async function checkIfFollowing(id) {
   }
 }
 
+export async function getArtistTopTracks(id) {
+  const accessToken = retrieveAccessToken();
+  try {
+    let url = `https://api.spotify.com/v1/artists/${id}/top-tracks`;
+    const response = await axios.get(url, {
+      params: {
+        country: "US",
+      },
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error("Error fetching artist top tracks", error);
+  }
+}
+
 /* 
  ---------------
 |   playlists   |

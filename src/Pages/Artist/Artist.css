@@ -56,3 +56,61 @@
   width: fit-content;
   padding: 1vh;
 }
+
+.artist-page-info {
+  margin: 1vh;
+  display: flex;
+}
+
+.artist-page-analysis,
+.artist-page-top-tracks {
+  padding: 1vh;
+  background: var(--primary);
+  width: 50%;
+  height: 45vh;
+}
+.artist-page-info h2 {
+  font-size: 1.7rem;
+  color: var(--secondary);
+}
+
+.artist-page-analysis {
+  margin-right: 5px;
+}
+.artist-page-top-tracks {
+  margin-left: 5px;
+}
+
+.artist-page-track-container {
+  margin: 5px 0px;
+  height: 38vh;
+  overflow: scroll;
+}
+
+.artist-page-top-track-div {
+  background-color: var(--secondary);
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.artist-page-top-track-div:last-child {
+  margin-bottom: 0px;
+}
+
+.artist-page-top-track-div h3 {
+  margin-left: 10px;
+  width: fit-content;
+}
+
+.artist-page-top-track-div p {
+  font-size: 0.8rem;
+  margin-left: auto;
+  margin-right: 5px;
+}
+
+.artist-page-top-track-div img {
+  background-color: var(--tertiary);
+  padding: 10px;
+  width: 135px;
+  height: 135px;
+}

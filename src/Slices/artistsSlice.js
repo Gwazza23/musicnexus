@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getArtistInfo, getUserTop } from "../Util/spotify";
+import { getArtistInfo, getArtistTopTracks, getUserTop } from "../Util/spotify";
 
 const fetchUserTopArtists = createAsyncThunk(
   "artists/topArtists",
@@ -14,11 +14,20 @@ const fetchArtistInfo = createAsyncThunk("artists/info", async (id) => {
   return response.data;
 });
 
+const fetchArtistTopTracks = createAsyncThunk(
+  "artist/topTracks",
+  async (id) => {
+    const response = await getArtistTopTracks(id);
+    return response.data;
+  }
+);
+
 const artistsSlice = createSlice({
   name: "userArtists",
   initialState: {
     data: [],
     status: "idle",
+    topTracks: [],
     error: null,
   },
   extraReducers: (builder) => {
@@ -44,11 +53,22 @@ const artistsSlice = createSlice({
       .addCase(fetchArtistInfo.rejected, (state, action) => {
         state.status = "rejected";
         state.error = action.error.message;
+      })
+      .addCase(fetchArtistTopTracks.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchArtistTopTracks.fulfilled, (state, action) => {
+        state.status = "completed";
+        state.topTracks = action.payload;
+      })
+      .addCase(fetchArtistTopTracks.rejected, (state, action) => {
+        state.status = "rejected";
+        state.error = action.error.message;
       });
   },
 });
 
-export { fetchUserTopArtists, fetchArtistInfo };
+export { fetchUserTopArtists, fetchArtistInfo, fetchArtistTopTracks };
 
 export default artistsSlice.reducer;
 
