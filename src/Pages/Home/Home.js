@@ -12,7 +12,7 @@ import {
   fetchUserTopTrack,
   selectTracks,
 } from "../../Slices/tracksSlice";
-import { getSeeds } from "../../Util/functions";
+import { LoaderComponent, getSeeds } from "../../Util/functions";
 import {
   fetchUserPlaylists,
   selectPlaylists,
@@ -41,7 +41,7 @@ function Home() {
   }, [dispatch, artistIds, trackIds]);
 
   if (data.profileStatus === "loading") {
-    return <h1>loading...</h1>;
+    return 
   } else if (data.profileStatus === "completed") {
     return (
       <div className="home-page-container">
@@ -107,7 +107,7 @@ function Home() {
                     className="home-artists-list-div"
                     key={artist.id}
                     onClick={() => {
-                      navigate(`/home/artists/${artists.id}`);
+                      navigate(`/home/artists/${artist.id}`);
                     }}
                   >
                     <p>{index + 1}.</p>

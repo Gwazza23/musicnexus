@@ -11,12 +11,12 @@ function Callback() {
   useEffect(() => {
     getAccessToken(code, codeVerifier).then((response) => {
       if (response === 200) {
-        navigate("/home/profile");
+        navigate("/home");
       }
     });
   }, [code, codeVerifier, navigate]);
 
-  return <div>Callback</div>;
+  return <div></div>;
 }
 
 export default Callback;

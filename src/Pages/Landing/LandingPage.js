@@ -1,10 +1,16 @@
 import "./LandingPage.css";
+import { useNavigate } from "react-router-dom";
 import {
   generateCodeChallenge,
   generateRandomString,
 } from "../../Util/spotify";
+import { useEffect } from "react";
 
 function LandingPage() {
+  const navigate = useNavigate();
+  const accessToken = localStorage.getItem("accessToken");
+  const expiresAt = localStorage.getItem("expiresAt");
+
   const handleLogIn = async () => {
     const codeVerifier = generateRandomString(126);
     await generateCodeChallenge(codeVerifier).then((codeChallenge) => {
@@ -27,6 +33,12 @@ function LandingPage() {
       window.open("https://accounts.spotify.com/authorize?" + args, "_self");
     });
   };
+
+  useEffect(() => {
+    if( accessToken && expiresAt && Date.now() < expiresAt ){
+      navigate('/home')
+    }
+  }, [accessToken,expiresAt,navigate])
 
   return (
     <div className="landing-page-container">

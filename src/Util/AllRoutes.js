@@ -21,7 +21,7 @@ function AllRoutes() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/callback" element={<Callback />} />
         <Route path="/home" element={<NavBar />}>
-          <Route path="/home/profile" element={<Home />} />
+          <Route path="/home/" element={<Home />} />
           <Route path="/home/artists" element={<Artists />} />
           <Route path="/home/tracks" element={<Tracks />} />
           <Route path="/home/recent" element={<Recent />} />
