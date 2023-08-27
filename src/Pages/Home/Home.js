@@ -12,7 +12,7 @@ import {
   fetchUserTopTrack,
   selectTracks,
 } from "../../Slices/tracksSlice";
-import { LoaderComponent, getSeeds } from "../../Util/functions";
+import { getSeeds } from "../../Util/functions";
 import {
   fetchUserPlaylists,
   selectPlaylists,

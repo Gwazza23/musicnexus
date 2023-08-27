@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const client_id = process.env.REACT_APP_CLIENT_ID;
-const redirect_uri = "http://localhost:3000/callback";
+const redirect_uri = process.env.REACT_APP_BUILD === 'development' ? "http://localhost:3000/callback" : 'https://musicnexus.netlify.app/callback';
 
 function retrieveAccessToken() {
   const accessToken = localStorage.getItem("accessToken");

@@ -24,7 +24,7 @@ function LandingPage() {
         response_type: "code",
         client_id: process.env.REACT_APP_CLIENT_ID,
         scope: scope,
-        redirect_uri: "http://localhost:3000/callback",
+        redirect_uri: process.env.REACT_APP_BUILD === 'development' ? "http://localhost:3000/callback" : 'https://musicnexus.netlify.app/callback',
         state: state,
         code_challenge_method: "S256",
         code_challenge: codeChallenge,

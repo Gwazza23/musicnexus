@@ -8,7 +8,6 @@ import {
   selectTracks,
 } from "../../Slices/tracksSlice";
 import { useDispatch, useSelector } from "react-redux";
-import Player from "../../Util/Player";
 import { chartOptions, chartColors ,convertKey, msToMinutesAndSeconds } from "../../Util/functions";
 import { Bar, Doughnut } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
@@ -98,9 +97,6 @@ function Track() {
                 <h3 key={artist.id}>{artist.name}</h3>
               ))}
             </span>
-            <div className="track-page-playback">
-              <Player uri={track.uri} />
-            </div>
             <h3>{msToMinutesAndSeconds(track.duration_ms)}</h3>
             <a
               href={track.external_urls?.spotify}
