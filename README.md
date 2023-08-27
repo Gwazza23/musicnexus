@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# Music Nexus
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+The aim of this project is to make a spotify profile overview/analyzer by using the Spotify API, however the underlying goal of the project was to learning how to incorporate Oauth2.0 in order to access the API resources.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+#### Top Artists Page
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+List of the top 20 artist for the user that can be sorted by All Time, Last 6 months or Last 4 weeks.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### OAuth2.0 uthentication
 
-### `npm test`
+Users are required to log in using their spotify accounts in order to use the web app.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Users are directed to a spotify authorization page where the user logs into their account and then accepts the scopes to which the web app will be used. The user is then redirected to the uri provided to the spotify api dashboard, once the user is redirected the code and code verifier are extracted from the url parameters and exchanged in order to get an acceess token, refresh token and token expiration time. The access token is then used throughout the app to fetch data from the spotify API.
 
-### `npm run build`
+### Home Page
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Home page contains 3 sections :
+* Profile page overview - short overview of profile with user icon, numbers of followers a user has, number of people the user is following (limited to just artist due to API) and number of playlists the user is part of.
+* User top tracks section - card displaying the users most listened to track of all time and the user's top 5 tracks of all time
+* User top artists section - card displaying the user most listened to artist of all time and user's top 5 artists of all time
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Top Artists Page
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+List of the user's top 20 artists that can be sorted by either all time, last 6 months or last 4 weeks,
 
-### `npm run eject`
+### Artist Page
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Artist page contains 3 sections:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* Artist overview - contains artist information such as the genres of music the artist is mostly attributed with, if the user is following the artist, a link to the spotify page of the artist and the amount of total followers the artist has.
+* Artist analysis - spotify doesn't have an endpoint for this features therefore the top 10 tracks for the artist are used as seeds to retrieve 10 different analysis which are used to get one average analysis for the artist. The analysis contains the following categories - acousticness, danceability, energy, instrumentalness, liveness, speechiness and valence.
+* Artist top tracks - list of the artist's top 10 popular tracks.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Top Tracks Page
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Top tracks page contains 2 sections:
 
-## Learn More
+* List of the user's top 20 tracks that can be sorted by either all time, last 6 months or last 4 weeks.
+* Recommended tracks section where the user's top 5 tracks are used as seeds in order to retrieve recommended tracks using the recommended spotify endpoint.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Track Page
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Track page contains 3 sections:
 
-### Code Splitting
+* Track overview - contains the name of the album that contains the track, list of artists that are credited on the track, duration of the track and a link to the spotify page of the track.
+* Track features - the track id is used to get features of the track which includes key, modality, time signature, tempo, bars, beats, sections, segments
+* Track analysis - the track id is used to get analysis of the track which includes acousticness, danceability, energy, instrumentalness, liveness, speechiness and valence
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Recent Page
 
-### Analyzing the Bundle Size
+List of the users 20 most recently listened to tracks. unfortunately the spotify api does not filter out the same song if it is listened to multiple times in a row therefore duplicate tracks might show up.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Playlists Page
 
-### Making a Progressive Web App
+List of all the user's playlists with details such as the owner of the of playlist, number of tracks in the playlist, if the playlist is public or private and if the playlist contains a description it is provided.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Individual Playlist Page
 
-### Advanced Configuration
+Playlist page contains 3 sections: 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+* Playlist overview - contains information such as the owner of the playlist, number of followers the playlist has, number of tracks the playlist has and the full duration of the playlist.
+* Playlist analysis - spotify doesn't have an endpoint for this features therefore the track in the playlist are used as seeds to retrieve  different analysis for each track which are used to get one average analysis for the playlist. The analysis contains the following categories - acousticness, danceability, energy, instrumentalness, liveness, speechiness and valence.
+* Playlist tracks - contains list of the tracks in the playlist.
 
-### Deployment
+## Development process
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+As with my other projects, I started off with basic sketches to get an idea of how I wanted my website to look, this time i decided to take inspiration from spotify itself with exception of using a dark background I wanted to use a light background to contrast the two websites.
 
-### `npm run build` fails to minify
+The coding section of the development was fairly simple (aside from the oauth implementation, further discussed below) as it involved basic html/javascript/css and react skills that I am proficient in by now
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Challenges
+
+The hardest/longest part of this project was setting up the oauth section of the website and deciding on how to store the tokens. When researching (stackoverflow, spotify community forums,YouTube videos) different ways to store the tokens securely I came to the conclusion that a backend would be required to store the refreshToken in a HTTPonly cookie however seeing as I wanted to created a pure front-end app and not having found any other way to store a refresh token on the front-end without exposing it to security attacks, I decided to not impliment an auto-refreshing function to the app instead opting to forcing the user to manually re authorize the web app.
+
+
+In the future if I am to improve on this project or build another project using oauth I would include a backend in order to store the token in a more safe manner

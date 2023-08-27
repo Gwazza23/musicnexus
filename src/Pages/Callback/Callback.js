@@ -8,6 +8,16 @@ function Callback() {
   let code = urlParams.get("code");
   let codeVerifier = localStorage.getItem("code_verifier");
 
+  const accessToken = localStorage.getItem('accessToken')
+  const expiresAt = localStorage.getItem('expiresAt')
+
+  useEffect(() => {
+    if( accessToken && expiresAt && Date.now() < expiresAt ){
+      navigate('/home')
+    }
+  }, [accessToken,expiresAt,navigate])
+
+
   useEffect(() => {
     getAccessToken(code, codeVerifier).then((response) => {
       if (response === 200) {
