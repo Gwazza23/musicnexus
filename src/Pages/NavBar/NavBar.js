@@ -2,7 +2,7 @@ import "./NavBar.css";
 import { MdReplay } from "react-icons/md";
 import { GiMicrophone } from "react-icons/gi";
 import { PiMusicNotesFill, PiPlaylistFill } from "react-icons/pi";
-import { BiSolidUser, BiExit } from "react-icons/bi";
+import { BiExit } from "react-icons/bi";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -27,8 +27,7 @@ function NavBar() {
       <nav>
         <div className="nav-links">
           <NavLink to="/home">
-            <BiSolidUser />
-            <p>Profile</p>
+            <img src={'/images/logoSmall.png'} alt="home page" />
           </NavLink>
           <NavLink to="/home/artists">
             <GiMicrophone />
@@ -48,7 +47,6 @@ function NavBar() {
           </NavLink>
           <div onClick={handleLogout}>
             <BiExit />
-            <p>Log out</p>
           </div>
         </div>
       </nav>
