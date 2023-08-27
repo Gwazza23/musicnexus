@@ -9,6 +9,7 @@ import {
 } from "../../Slices/playlistsSlice";
 import { getPlaylistCoverImage } from "../../Util/spotify";
 import {
+  chartLabels,
   chartOptions,
   getFeaturesAverage,
   getIds,
@@ -37,15 +38,7 @@ function PlaylistPage() {
   const features = getFeaturesAverage(playlistFeatures);
 
   const state = {
-    labels: [
-      "acousticness",
-      "danceability",
-      "energy",
-      "instrumentalness",
-      "liveness",
-      "speechiness",
-      "valence",
-    ],
+    labels: chartLabels,
     datasets: [
       {
         legend: {

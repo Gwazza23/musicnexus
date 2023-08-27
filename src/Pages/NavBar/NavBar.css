@@ -65,6 +65,10 @@ nav {
   .nav-links a:hover , .nav-links div:hover {
     background: none;
   }
+
+  .nav-links p {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 425px) {

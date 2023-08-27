@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Artist.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchArtistInfo,
@@ -14,6 +14,7 @@ import {
   msToMinutesAndSeconds,
   shortenFollowers,
   chartColors,
+  chartLabels,
 } from "../../Util/functions";
 import { checkIfFollowing } from "../../Util/spotify";
 import {
@@ -24,6 +25,7 @@ import { Chart, registerables } from "chart.js";
 import { Bar, Doughnut } from "react-chartjs-2";
 
 function Artist() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [following, setFollowing] = useState(null);
   const [smallScreen, setSmallScreen] = useState(false);
@@ -40,15 +42,7 @@ function Artist() {
   const analysis = getFeaturesAverage(artistAnalysis);
 
   const state = {
-    labels: [
-      "acousticness",
-      "danceability",
-      "energy",
-      "instrumentalness",
-      "liveness",
-      "speechiness",
-      "valence",
-    ],
+    labels: chartLabels,
     datasets: [
       {
         legend: {
@@ -133,7 +127,7 @@ function Artist() {
             <div className="artist-page-track-container">
               {artistTopTracks?.tracks?.map((tracks) => {
                 return (
-                  <div className="artist-page-top-track-div" key={tracks.id}>
+                  <div className="artist-page-top-track-div" key={tracks.id} onClick={() => navigate(`/home/tracks/${tracks.id}`) } >
                     <img src={tracks.album.images[0].url} alt={tracks.name} />
                     <h3>{tracks.name}</h3>
                     <p>{msToMinutesAndSeconds(tracks.duration_ms)}</p>

@@ -8,7 +8,7 @@ import {
   selectTracks,
 } from "../../Slices/tracksSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { chartOptions, chartColors ,convertKey, msToMinutesAndSeconds } from "../../Util/functions";
+import { chartOptions, chartColors ,convertKey, msToMinutesAndSeconds, chartLabels } from "../../Util/functions";
 import { Bar, Doughnut } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 
@@ -23,15 +23,7 @@ function Track() {
   Chart.register(...registerables);
 
   const state = {
-    labels: [
-      "acousticness",
-      "danceability",
-      "energy",
-      "instrumentalness",
-      "liveness",
-      "speechiness",
-      "valence",
-    ],
+    labels: chartLabels,
     datasets: [
       {
         legend: {

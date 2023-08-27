@@ -99,6 +99,10 @@
     align-items: center;
   }
 
+  .track-page-header img {
+    margin-top: 10px;
+  }
+
   .track-page-header-info {
     align-items: center;
     margin: 10px 0px;

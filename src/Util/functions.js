@@ -92,6 +92,16 @@ export function getPlaylistDuration(array) {
   return duration;
 }
 
+export const chartLabels = [
+  "acousticness",
+  "danceability",
+  "energy",
+  "instrumentalness",
+  "liveness",
+  "speechiness",
+  "valence",
+];
+
 export const chartColors = [
   [
     "rgba(171,94,7,1)",
