@@ -12,6 +12,7 @@ async function retrieveAccessToken() {
 */
 
 
+
 /* 
  --------------  
 |   userInfo   |
@@ -20,7 +21,6 @@ async function retrieveAccessToken() {
 
 export async function getProfileInfo() {
   const accessToken = await retrieveAccessToken();
-  console.log('user token ' + accessToken)
   try {
     let url = "https://api.spotify.com/v1/me";
     const response = await axios.get(url, {
@@ -183,7 +183,7 @@ export async function checkIfFollowing(id) {
 }
 
 export async function getArtistTopTracks(id) {
-  const accessToken = retrieveAccessToken();
+  const accessToken = await retrieveAccessToken();
   try {
     let url = `https://api.spotify.com/v1/artists/${id}/top-tracks`;
     const response = await axios.get(url, {
@@ -222,7 +222,7 @@ export async function getUserPlaylists() {
 }
 
 export async function getPlaylist(id) {
-  const accessToken = retrieveAccessToken();
+  const accessToken = await retrieveAccessToken();
   try {
     let url = `https://api.spotify.com/v1/playlists/${id}`;
     const response = await axios.get(url, {
@@ -237,7 +237,7 @@ export async function getPlaylist(id) {
 }
 
 export async function getPlaylistCoverImage(id) {
-  const accessToken = retrieveAccessToken();
+  const accessToken = await retrieveAccessToken();
   try {
     let url = `https://api.spotify.com/v1/playlists/${id}/images`;
     const response = await axios.get(url, {
@@ -253,7 +253,7 @@ export async function getPlaylistCoverImage(id) {
 
 export async function getPlaylistFeatures(ids) {
   console.log("am been caled");
-  const accessToken = retrieveAccessToken();
+  const accessToken = await retrieveAccessToken();
   try {
     let url = `https://api.spotify.com/v1/audio-features?ids=${ids}`;
     const response = await axios.get(url, {

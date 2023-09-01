@@ -28,8 +28,6 @@ function Home() {
   const tracks = useSelector(selectTracks).data?.items?.slice(0, 5);
   const playlists = useSelector(selectPlaylists).data?.items?.length;
 
-  console.log(tracks);
-
   const artistIds = getSeeds(artists?.slice(0, 2));
   const trackIds = getSeeds(tracks?.slice(0, 2));
 
