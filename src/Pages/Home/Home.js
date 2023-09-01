@@ -32,16 +32,21 @@ function Home() {
   const trackIds = getSeeds(tracks?.slice(0, 2));
 
   useEffect(() => {
-    dispatch(fetchUserProfile());
-    dispatch(fetchUserFollowing());
-    dispatch(fetchUserPlaylists());
-    dispatch(fetchUserTopArtists("long_term"));
-    dispatch(fetchUserTopTrack("long_term"));
-    dispatch(fetchRecommendedTrack([artistIds, trackIds]));
+    const fetchData = async () => {
+      await Promise.all([
+        dispatch(fetchUserProfile()),
+        dispatch(fetchUserFollowing()),
+        dispatch(fetchUserPlaylists()),
+        dispatch(fetchUserTopArtists("long_term")),
+        dispatch(fetchUserTopTrack("long_term")),
+        dispatch(fetchRecommendedTrack([artistIds, trackIds])),
+      ]);
+    };
+    fetchData();
   }, [dispatch, artistIds, trackIds]);
 
   if (data.profileStatus === "loading") {
-    return 
+    return;
   } else if (data.profileStatus === "completed") {
     return (
       <div className="home-page-container">

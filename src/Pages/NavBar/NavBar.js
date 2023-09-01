@@ -5,29 +5,50 @@ import { PiMusicNotesFill, PiPlaylistFill } from "react-icons/pi";
 import { BiExit } from "react-icons/bi";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import axios from "axios";
 
 function NavBar() {
   const navigate = useNavigate();
-  const accessToken = localStorage.getItem("accessToken");
 
-  const handleLogout = (event) => {
-    event.preventDefault();
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("expiresAt");
-    navigate("/");
+  const backendURL =
+    process.env.REACT_APP_NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "https://musicnexusbackend.vercel.app";
+
+  const handleLogout = () => {
+    axios
+      .get(`${backendURL}/spotify/logout`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        if (response.status === 202) {
+          localStorage.removeItem("accessToken");
+          navigate("/");
+        }
+      });
   };
 
   useEffect(() => {
-    if (!accessToken) {
-      navigate("/");
-    }
-  }, [accessToken, navigate]);
+    const getToken = async () => {
+      const response = await axios.get(`${backendURL}/spotify/isLogged`, {
+        withCredentials: true,
+      });
+      if (!response.data) {
+        navigate("/");
+      } else {
+        localStorage.setItem("accessToken", response.data.access_token);
+        localStorage.setItem("expiresAt", response.data.expires_at)
+      }
+    };
+    getToken();
+  }, [backendURL, navigate]);
+
   return (
     <>
       <nav>
         <div className="nav-links">
           <NavLink to="/home">
-            <img src={'/images/logoSmall.png'} alt="home page" />
+            <img src={"/images/logoSmall.png"} alt="home page" />
           </NavLink>
           <NavLink to="/home/artists">
             <GiMicrophone />
