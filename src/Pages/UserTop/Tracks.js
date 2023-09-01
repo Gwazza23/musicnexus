@@ -64,7 +64,12 @@ function Tracks() {
               }}
             >
               <div className="user-top-page-image-div">
-                <img src={track.album.images[0].url} alt={track.name} />
+                <img
+                  src={track.album.images[2].url}
+                  alt={track.name}
+                  width={track.album.images[2].width}
+                  height={track.album.images[2].height}
+                />
               </div>
               <div className="user-top-page-info-div">
                 <h3>{track.name}</h3>
@@ -85,10 +90,13 @@ function Tracks() {
           {recommended &&
             recommended.map((track) => {
               return (
-                <div className="reccom-div" onClick={() => { 
-                  navigate(`/home/tracks/${track.id}`)
-                }} >
-                  <img src={track.album.images[0].url} alt={track.name} />
+                <div
+                  className="reccom-div"
+                  onClick={() => {
+                    navigate(`/home/tracks/${track.id}`);
+                  }}
+                >
+                  <img src={track.album.images[1].url} alt={track.name} />
                   <h3>{track.name}</h3>
                   <h4>{track.artists[0].name}</h4>
                 </div>

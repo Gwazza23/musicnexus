@@ -56,7 +56,12 @@ function Artists() {
               }}
             >
               <div className="user-top-page-image-div">
-                <img src={artist.images[0].url} alt={artist.name} />
+                <img
+                  src={artist.images[2].url}
+                  alt={artist.name}
+                  width={artist.images[2].width}
+                  height={artist.images[2].height}
+                />
               </div>
               <div className="user-top-page-info-div">
                 <h3>{artist.name}</h3>

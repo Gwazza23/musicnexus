@@ -44,10 +44,6 @@
   background-color: var(--tertiary);
   width: fit-content;
 }
-.user-top-page-card img {
-  width: 125px;
-  height: 125px;
-}
 .user-top-page-info-div {
   margin-top: 5px;
   width: 100%;
@@ -86,7 +82,7 @@
   border-radius: 30px;
   background-color: var(--secondary);
   margin: 0px auto;
-  width: 20vw;
+  width: fit-content;
 }
 
 .reccom-div h3,
@@ -103,12 +99,6 @@ h4 {
 .reccom-div h4 {
   color: var(--tertiary);
 }
-.reccom-div img {
-  border-top-right-radius: 30px;
-  border-top-left-radius: 30px;
-  width: 20vw;
-  height: 20vw;
-}
 
 @media only screen and (max-width: 425px) {
   .user-top-page-sort p {
@@ -120,10 +110,7 @@ h4 {
   .user-top-page-info-div li {
     font-size: 0.85rem;
   }
-  .artist-page-card img {
-    width: 105px;
-    height: 105px;
-  }
+
   .user-top-page-card {
     min-width: 90vw;
   }
@@ -133,10 +120,6 @@ h4 {
   }
   .reccom-div {
     min-width: 70vw;
-  }
-  .reccom-div img {
-    min-width: 70vw;
-    min-height: 70vw;
   }
 }
 
@@ -172,10 +155,6 @@ h4 {
   .reccom-div {
     width: 30vw;
     margin: 10px 5px;
-  }
-  .reccom-div img {
-    width: 30vw;
-    height: 30vw;
   }
   .artist-page {
     padding-bottom: 12vh;

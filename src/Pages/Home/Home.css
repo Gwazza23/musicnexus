@@ -104,10 +104,6 @@
   border-radius: 30px;
   margin-bottom: 2vh;
 }
-.home-track-top-div img {
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
-}
 .home-track-top-div h3,
 h4 {
   margin-bottom: 10px;
@@ -231,10 +227,6 @@ h4 {
   border-radius: 30px;
   margin-bottom: 2vh;
 }
-.home-artist-top-div img {
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
-}
 .home-artist-top-div h3 {
   margin-bottom: 10px;
   padding: 1vh;
@@ -257,7 +249,7 @@ h4 {
     font-size: 6vw;
   }
   .home-profile-icon img {
-    width: 80vw;
+    scale: 0.85;
   }
 }
 
