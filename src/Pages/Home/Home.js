@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./Home.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -23,6 +23,8 @@ function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [tokenAvailable, setTokenAvailable] = useState(false);
+
   const data = useSelector(selectUser);
   const artists = useSelector(selectArtists).data?.items?.slice(0, 5);
   const tracks = useSelector(selectTracks).data?.items?.slice(0, 5);
@@ -31,19 +33,37 @@ function Home() {
   const artistIds = getSeeds(artists?.slice(0, 2));
   const trackIds = getSeeds(tracks?.slice(0, 2));
 
+  console.log(tokenAvailable);
+
   useEffect(() => {
-    const fetchData = async () => {
-      await Promise.all([
-        dispatch(fetchUserProfile()),
-        dispatch(fetchUserFollowing()),
-        dispatch(fetchUserPlaylists()),
-        dispatch(fetchUserTopArtists("long_term")),
-        dispatch(fetchUserTopTrack("long_term")),
-        dispatch(fetchRecommendedTrack([artistIds, trackIds])),
-      ]);
+    const checkToken = () => {
+      const accessToken = localStorage.getItem("accessToken");
+      if (accessToken) {
+        setTokenAvailable(true);
+      }
     };
-    fetchData();
-  }, [dispatch, artistIds, trackIds]);
+
+    checkToken()
+    const intervalId = setInterval(checkToken, 500);
+
+    return () => clearInterval(intervalId)
+  }, []);
+
+  useEffect(() => {
+    if (tokenAvailable) {
+      const fetchData = async () => {
+        await Promise.all([
+          dispatch(fetchUserProfile()),
+          dispatch(fetchUserFollowing()),
+          dispatch(fetchUserPlaylists()),
+          dispatch(fetchUserTopArtists("long_term")),
+          dispatch(fetchUserTopTrack("long_term")),
+          dispatch(fetchRecommendedTrack([artistIds, trackIds])),
+        ]);
+      };
+      fetchData();
+    }
+  }, [dispatch, artistIds, trackIds, tokenAvailable]);
 
   if (data.profileStatus === "loading") {
     return;
