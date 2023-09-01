@@ -1,8 +1,8 @@
 import axios from "axios";
 
-function retrieveAccessToken() {
-  const accessToken = sessionStorage.getItem("accessToken");
-  return accessToken;
+async function retrieveAccessToken() {
+  const accessToken = localStorage.getItem("accessToken");
+  return accessToken
 }
 
 /* 
@@ -11,21 +11,6 @@ function retrieveAccessToken() {
  -----------
 */
 
-function hasAccessTokenExpired() {
-  const expiresAt = sessionStorage.getItem("expiresAt");
-  return Date.now() > expiresAt;
-}
-
-function redirectUserToLoginPage() {
-  if (hasAccessTokenExpired()) {
-    console.log("token has expired");
-    window.open("/", "_self");
-  } else {
-    console.log("token has not expired");
-  }
-}
-
-setInterval(redirectUserToLoginPage, 1 * 60 * 1000);
 
 /* 
  --------------  
@@ -34,7 +19,8 @@ setInterval(redirectUserToLoginPage, 1 * 60 * 1000);
 */
 
 export async function getProfileInfo() {
-  const accessToken = retrieveAccessToken();
+  const accessToken = await retrieveAccessToken();
+  console.log('user token ' + accessToken)
   try {
     let url = "https://api.spotify.com/v1/me";
     const response = await axios.get(url, {
@@ -49,7 +35,7 @@ export async function getProfileInfo() {
 }
 
 export async function getUserFollowing() {
-  const accessToken = retrieveAccessToken();
+  const accessToken = await retrieveAccessToken();
   try {
     let url = "https://api.spotify.com/v1/me/following?type=artist";
     const response = await axios.get(url, {
@@ -64,7 +50,7 @@ export async function getUserFollowing() {
 }
 
 export async function getUserTop(type, time_range) {
-  const accessToken = retrieveAccessToken();
+  const accessToken = await retrieveAccessToken();
   try {
     let url = `https://api.spotify.com/v1/me/top/${type}?time_range=${time_range}`;
     const response = await axios.get(url, {
@@ -79,7 +65,7 @@ export async function getUserTop(type, time_range) {
 }
 
 export async function getUserRecommendation(seeds) {
-  const accessToken = retrieveAccessToken();
+  const accessToken = await retrieveAccessToken();
   try {
     let url = `https://api.spotify.com/v1/recommendations?seed_tracks=${seeds}`;
     const response = await axios.get(url, {
@@ -101,7 +87,7 @@ export async function getUserRecommendation(seeds) {
 */
 
 export async function getRecentlyPlayedTracks() {
-  const accessToken = retrieveAccessToken();
+  const accessToken = await retrieveAccessToken();
   try {
     let url = `https://api.spotify.com/v1/me/player/recently-played`;
     const response = await axios.get(url, {
@@ -116,7 +102,7 @@ export async function getRecentlyPlayedTracks() {
 }
 
 export async function getTrack(id) {
-  const accessToken = retrieveAccessToken();
+  const accessToken = await retrieveAccessToken();
   try {
     let url = `https://api.spotify.com/v1/tracks/${id}`;
     const response = await axios.get(url, {
@@ -131,7 +117,7 @@ export async function getTrack(id) {
 }
 
 export async function getTrackFeatures(id) {
-  const accessToken = retrieveAccessToken();
+  const accessToken = await retrieveAccessToken();
   try {
     let url = `https://api.spotify.com/v1/audio-analysis/${id}`;
     const response = await axios.get(url, {
@@ -146,7 +132,7 @@ export async function getTrackFeatures(id) {
 }
 
 export async function getTrackAnalysis(id) {
-  const accessToken = retrieveAccessToken();
+  const accessToken = await retrieveAccessToken();
   try {
     let url = `https://api.spotify.com/v1/audio-features/${id}`;
     const response = await axios.get(url, {
@@ -167,7 +153,7 @@ export async function getTrackAnalysis(id) {
 */
 
 export async function getArtistInfo(id) {
-  const accessToken = retrieveAccessToken();
+  const accessToken = await retrieveAccessToken();
   try {
     let url = `https://api.spotify.com/v1/artists/${id}`;
     const response = await axios.get(url, {
@@ -182,7 +168,7 @@ export async function getArtistInfo(id) {
 }
 
 export async function checkIfFollowing(id) {
-  const accessToken = retrieveAccessToken();
+  const accessToken = await retrieveAccessToken();
   try {
     let url = `https://api.spotify.com/v1/me/following/contains?type=artist&ids=${id}`;
     const response = await axios.get(url, {
@@ -221,7 +207,7 @@ export async function getArtistTopTracks(id) {
 */
 
 export async function getUserPlaylists() {
-  const accessToken = retrieveAccessToken();
+  const accessToken = await retrieveAccessToken();
   try {
     let url = `https://api.spotify.com/v1/me/playlists`;
     const response = await axios.get(url, {

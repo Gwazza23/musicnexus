@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./Home.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -23,8 +23,6 @@ function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [tokenAvailable, setTokenAvailable] = useState(false);
-
   const data = useSelector(selectUser);
   const artists = useSelector(selectArtists).data?.items?.slice(0, 5);
   const tracks = useSelector(selectTracks).data?.items?.slice(0, 5);
@@ -33,24 +31,7 @@ function Home() {
   const artistIds = getSeeds(artists?.slice(0, 2));
   const trackIds = getSeeds(tracks?.slice(0, 2));
 
-  console.log(tokenAvailable);
-
   useEffect(() => {
-    const checkToken = () => {
-      const accessToken = sessionStorage.getItem("accessToken");
-      if (accessToken) {
-        setTokenAvailable(true);
-      }
-    };
-
-    checkToken()
-    const intervalId = setInterval(checkToken, 500);
-
-    return () => clearInterval(intervalId)
-  }, []);
-
-  useEffect(() => {
-    if (tokenAvailable) {
       const fetchData = async () => {
         await Promise.all([
           dispatch(fetchUserProfile()),
@@ -62,8 +43,7 @@ function Home() {
         ]);
       };
       fetchData();
-    }
-  }, [dispatch, artistIds, trackIds, tokenAvailable]);
+  }, [dispatch, artistIds, trackIds]);
 
   if (data.profileStatus === "loading") {
     return;

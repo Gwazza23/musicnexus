@@ -10,6 +10,7 @@ import Playlists from "../Pages/Playlists/Playlists";
 import Track from "../Pages/Track/Track";
 import PlaylistPage from "../Pages/Playlists/PlaylistPage";
 import Artist from "../Pages/Artist/Artist";
+import Callback from "../Pages/Callback/Callback";
 
 function AllRoutes() {
   const location = useLocation();
@@ -18,6 +19,7 @@ function AllRoutes() {
     <AnimatePresence mode="wait" initial={false}>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/callback" element={<Callback />} />
         <Route path="/home" element={<NavBar />}>
           <Route path="/home/" element={<Home />} />
           <Route path="/home/artists" element={<Artists />} />
