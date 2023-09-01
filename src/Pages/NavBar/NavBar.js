@@ -33,8 +33,8 @@ function NavBar() {
       const response = await axios.get(`${backendURL}/spotify/isLogged`, {
         withCredentials: true,
       });
-      localStorage.setItem("accessToken", response.data.access_token);
-      localStorage.setItem("expiresAt", response.data.expires_at);
+      sessionStorage.setItem("accessToken", response.data.access_token);
+      sessionStorage.setItem("expiresAt", response.data.expires_at);
     };
     getToken();
   }, [backendURL, navigate]);

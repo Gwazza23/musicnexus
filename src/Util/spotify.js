@@ -1,7 +1,7 @@
 import axios from "axios";
 
 function retrieveAccessToken() {
-  const accessToken = localStorage.getItem("accessToken");
+  const accessToken = sessionStorage.getItem("accessToken");
   return accessToken;
 }
 
@@ -12,7 +12,7 @@ function retrieveAccessToken() {
 */
 
 function hasAccessTokenExpired() {
-  const expiresAt = localStorage.getItem("expiresAt");
+  const expiresAt = sessionStorage.getItem("expiresAt");
   return Date.now() > expiresAt;
 }
 
@@ -266,7 +266,7 @@ export async function getPlaylistCoverImage(id) {
 }
 
 export async function getPlaylistFeatures(ids) {
-  console.log("am been caled")
+  console.log("am been caled");
   const accessToken = retrieveAccessToken();
   try {
     let url = `https://api.spotify.com/v1/audio-features?ids=${ids}`;
