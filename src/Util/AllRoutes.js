@@ -1,7 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import LandingPage from "../Pages/Landing/LandingPage";
-import Callback from "../Pages/Callback/Callback";
 import NavBar from "../Pages/NavBar/NavBar";
 import Home from "../Pages/Home/Home";
 import Artists from "../Pages/UserTop/Artists";
@@ -11,6 +10,7 @@ import Playlists from "../Pages/Playlists/Playlists";
 import Track from "../Pages/Track/Track";
 import PlaylistPage from "../Pages/Playlists/PlaylistPage";
 import Artist from "../Pages/Artist/Artist";
+import Callback from "../Pages/Callback/Callback";
 
 function AllRoutes() {
   const location = useLocation();

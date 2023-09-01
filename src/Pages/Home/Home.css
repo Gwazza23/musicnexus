@@ -70,7 +70,7 @@
 */
 
 .home-tracks-section {
-  height: 100vh;
+  height: fit-content;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
@@ -100,11 +100,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 320px;
+  width: fit-content;
   border-radius: 30px;
+  margin-bottom: 2vh;
 }
 .home-track-top-div img {
-  width: 100%;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
 }
@@ -125,7 +125,7 @@ h4 {
   grid-area: 1/3/6/5;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 
@@ -137,8 +137,8 @@ h4 {
   display: flex;
   align-items: center;
   color: var(--tertiary);
+  margin: 2vh 0vw;
 }
-
 
 .home-tracks-list-div p {
   padding: 1vh;
@@ -146,8 +146,8 @@ h4 {
 }
 
 .home-tracks-list-div img {
-  width: 125px;
-  height: auto;
+  padding: 1vh;
+  background-color: var(--tertiary);
 }
 
 .home-tracks-list-div h3 {
@@ -163,7 +163,7 @@ h4 {
 */
 
 .home-artists-section {
-  height: 100vh;
+  height: fit-content;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
@@ -172,7 +172,7 @@ h4 {
   grid-area: 1/1/6/3;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 
@@ -184,6 +184,7 @@ h4 {
   display: flex;
   align-items: center;
   color: var(--secondary);
+  margin: 2vh 2vw;
 }
 
 .home-artists-list-div p {
@@ -192,8 +193,9 @@ h4 {
 }
 
 .home-artists-list-div img {
-  width: 125px;
-  height: auto;
+  height: 64px;
+  padding: 1vh;
+  background-color: var(--tertiary);
 }
 
 .home-artists-list-div h3 {
@@ -227,9 +229,9 @@ h4 {
   align-items: center;
   width: 320px;
   border-radius: 30px;
+  margin-bottom: 2vh;
 }
 .home-artist-top-div img {
-  width: 100%;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
 }
@@ -250,7 +252,8 @@ h4 {
   .home-profile-info {
     width: 90vw;
   }
-  .home-profile-info p, .home-profile-info span {
+  .home-profile-info p,
+  .home-profile-info span {
     font-size: 6vw;
   }
   .home-profile-icon img {
@@ -270,15 +273,15 @@ h4 {
 
   .home-profile-icon {
     margin: 12vh;
-  };
+  }
 
   .home-profile-info {
-    border: 2px solid red;
     width: 90vw;
     padding-bottom: 10px;
   }
 
-  .home-profile-info p, .home-profile-info span {
+  .home-profile-info p,
+  .home-profile-info span {
     font-size: 5.5vw;
   }
 

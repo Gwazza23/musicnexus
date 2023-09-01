@@ -28,20 +28,27 @@ function Home() {
   const tracks = useSelector(selectTracks).data?.items?.slice(0, 5);
   const playlists = useSelector(selectPlaylists).data?.items?.length;
 
+  console.log(tracks);
+
   const artistIds = getSeeds(artists?.slice(0, 2));
   const trackIds = getSeeds(tracks?.slice(0, 2));
 
   useEffect(() => {
-    dispatch(fetchUserProfile());
-    dispatch(fetchUserFollowing());
-    dispatch(fetchUserPlaylists());
-    dispatch(fetchUserTopArtists("long_term"));
-    dispatch(fetchUserTopTrack("long_term"));
-    dispatch(fetchRecommendedTrack([artistIds, trackIds]));
+    const fetchData = async () => {
+      await Promise.all([
+        dispatch(fetchUserProfile()),
+        dispatch(fetchUserFollowing()),
+        dispatch(fetchUserPlaylists()),
+        dispatch(fetchUserTopArtists("long_term")),
+        dispatch(fetchUserTopTrack("long_term")),
+        dispatch(fetchRecommendedTrack([artistIds, trackIds])),
+      ]);
+    };
+    fetchData();
   }, [dispatch, artistIds, trackIds]);
 
   if (data.profileStatus === "loading") {
-    return 
+    return;
   } else if (data.profileStatus === "completed") {
     return (
       <div className="home-page-container">
@@ -74,7 +81,7 @@ function Home() {
                 All Time Top Track<span>!</span>
               </h2>
               <div className="home-track-top-div">
-                <img src={tracks[0].album.images[0].url} alt="top artist" />
+                <img src={tracks[0].album.images[1].url} alt="top artist" />
                 <h3>{tracks[0].name}</h3>
                 <h4>{tracks[0].artists[0].name}</h4>
               </div>
@@ -90,7 +97,12 @@ function Home() {
                     }}
                   >
                     <p>{index + 1}.</p>
-                    <img src={track.album.images[1].url} alt={track.name} />
+                    <img
+                      src={track.album.images[2].url}
+                      alt={track.name}
+                      width={track.album.images[2].width}
+                      height={track.album.images[2].height}
+                    />
                     <h3>{track.name}</h3>
                   </div>
                 );
@@ -111,11 +123,7 @@ function Home() {
                     }}
                   >
                     <p>{index + 1}.</p>
-                    <img
-                      width="125px"
-                      src={artist.images[0].url}
-                      alt={artist.name}
-                    />
+                    <img src={artist.images[2].url} alt={artist.name} />
                     <h3>{artist.name}</h3>
                   </div>
                 );
@@ -126,7 +134,7 @@ function Home() {
                 All Time Top Artist<span>!</span>
               </h2>
               <div className="home-artist-top-div">
-                <img src={artists[0].images[0].url} alt="top artist" />
+                <img src={artists[0].images[1].url} alt="top artist" />
                 <h3>{artists[0].name}</h3>
               </div>
             </div>

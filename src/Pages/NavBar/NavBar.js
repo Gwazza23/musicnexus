@@ -4,30 +4,30 @@ import { GiMicrophone } from "react-icons/gi";
 import { PiMusicNotesFill, PiPlaylistFill } from "react-icons/pi";
 import { BiExit } from "react-icons/bi";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectToken } from "../../Slices/tokenSlice";
 import { useEffect } from "react";
 
 function NavBar() {
+  const accessToken = (useSelector(selectToken).accessToken);
   const navigate = useNavigate();
-  const accessToken = localStorage.getItem("accessToken");
-
-  const handleLogout = (event) => {
-    event.preventDefault();
+  const handleLogout = () => {
     localStorage.removeItem("accessToken");
-    localStorage.removeItem("expiresAt");
     navigate("/");
   };
 
   useEffect(() => {
-    if (!accessToken) {
-      navigate("/");
+    if(accessToken){
+      localStorage.setItem('accessToken',accessToken)
     }
-  }, [accessToken, navigate]);
+  }, [accessToken]);
+
   return (
     <>
       <nav>
         <div className="nav-links">
           <NavLink to="/home">
-            <img src={'/images/logoSmall.png'} alt="home page" />
+            <img src={"/images/logoSmall.png"} alt="home page" />
           </NavLink>
           <NavLink to="/home/artists">
             <GiMicrophone />

@@ -1,49 +1,36 @@
+import { generateRandomString } from "../../Util/functions";
 import "./LandingPage.css";
-import { useNavigate } from "react-router-dom";
-import {
-  generateCodeChallenge,
-  generateRandomString,
-} from "../../Util/spotify";
-import { useEffect } from "react";
 
 function LandingPage() {
-  const navigate = useNavigate();
-  const accessToken = localStorage.getItem("accessToken");
-  const expiresAt = localStorage.getItem("expiresAt");
+  const handleClick = () => {
+    const client_id = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+    const redirect_uri =
+      process.env.REACT_APP_NODE_ENV === "development"
+        ? "http://localhost:3000/callback"
+        : "https://musicnexus.vercel.app/callback";
 
-  const handleLogIn = async () => {
-    const codeVerifier = generateRandomString(126);
-    await generateCodeChallenge(codeVerifier).then((codeChallenge) => {
-      let state = generateRandomString(16);
-      let scope =
-        "user-read-private user-read-email user-follow-read user-top-read user-read-recently-played playlist-read-private streaming user-read-playback-state user-modify-playback-state";
+    const state = generateRandomString(16);
 
-      localStorage.setItem("code_verifier", codeVerifier);
+    localStorage.setItem("spotify_auth_state", state);
 
-      let args = new URLSearchParams({
-        response_type: "code",
-        client_id: process.env.REACT_APP_CLIENT_ID,
-        scope: scope,
-        redirect_uri: process.env.REACT_APP_BUILD === 'development' ? "http://localhost:3000/callback" : 'https://musicnexus.netlify.app/callback',
-        state: state,
-        code_challenge_method: "S256",
-        code_challenge: codeChallenge,
-      });
+    const scope =
+      "user-read-private user-read-email user-follow-read user-top-read user-read-recently-played playlist-read-private streaming user-read-playback-state user-modify-playback-state";
 
-      window.open("https://accounts.spotify.com/authorize?" + args, "_self");
-    });
+    var url = "https://accounts.spotify.com/authorize";
+
+    url += "?response_type=token";
+    url += "&client_id=" + encodeURIComponent(client_id);
+    url += "&scope=" + encodeURIComponent(scope);
+    url += "&redirect_uri=" + encodeURIComponent(redirect_uri);
+    url += "&state=" + encodeURIComponent(state);
+
+    window.location = url
   };
-
-  useEffect(() => {
-    if( accessToken && expiresAt && Date.now() < expiresAt ){
-      navigate('/home')
-    }
-  }, [accessToken,expiresAt,navigate])
 
   return (
     <div className="landing-page-container">
       <img src="/images/MusicNexus.png" alt="music nexus logo" />
-      <div className="spotify-login" onClick={handleLogIn}>
+      <div className="spotify-login" onClick={handleClick}>
         Log in with spotify
       </div>
     </div>

@@ -1,32 +1,33 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch} from "react-redux";
+import { setAccessToken } from "../../Slices/tokenSlice";
 import { useNavigate } from "react-router-dom";
-import { getAccessToken } from "../../Util/spotify";
 
 function Callback() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const urlParams = new URLSearchParams(window.location.search);
-  let code = urlParams.get("code");
-  let codeVerifier = localStorage.getItem("code_verifier");
 
-  const accessToken = localStorage.getItem('accessToken')
-  const expiresAt = localStorage.getItem('expiresAt')
+  const urlFragment = window.location.hash;
+  const params = new URLSearchParams(urlFragment.substring(1));
+  const accessToken = params.get("access_token");
 
   useEffect(() => {
-    if( accessToken && expiresAt && Date.now() < expiresAt ){
-      navigate('/home')
+    if (accessToken) {
+      dispatch(setAccessToken(accessToken));
     }
-  }, [accessToken,expiresAt,navigate])
+  }, [dispatch, accessToken]);
 
-
-  useEffect(() => {
-    getAccessToken(code, codeVerifier).then((response) => {
-      if (response === 200) {
-        navigate("/home");
-      }
-    });
-  }, [code, codeVerifier, navigate]);
-
-  return <div></div>;
+  return (
+    <div>
+      <button
+        onClick={() => {
+          navigate("/home");
+        }}
+      >
+        Go To Home
+      </button>
+    </div>
+  );
 }
 
 export default Callback;
