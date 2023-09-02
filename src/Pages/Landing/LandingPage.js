@@ -14,7 +14,7 @@ function LandingPage() {
     localStorage.setItem("spotify_auth_state", state);
 
     const scope =
-      "user-read-private user-read-email user-follow-read user-top-read user-read-recently-played playlist-read-private streaming user-read-playback-state user-modify-playback-state";
+      "user-read-private user-read-email user-follow-read user-top-read user-read-recently-played playlist-read-private";
 
     var url = "https://accounts.spotify.com/authorize";
 

@@ -72,14 +72,18 @@
 }
 
 .user-top-page-reccom-div {
+  flex-wrap: wrap;
   display: flex;
   min-width: 80vw;
   margin-bottom: 5vh;
 }
 
 .reccom-div {
+  display: flex;
+  flex-direction: column;
   cursor: pointer;
-  border-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
   background-color: var(--secondary);
   margin: 0px auto;
   width: fit-content;

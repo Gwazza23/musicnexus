@@ -12,8 +12,7 @@
 .playlist-page-section-two {
   margin-top: 1vh;
   padding: 0vh 1vh 1vh 1vh;
-  width: 60vw;
-  height: 85vh;
+  height: 80vh;
   overflow: scroll;
 }
 
@@ -25,19 +24,11 @@
   background-color: var(--primary);
   color: var(--secondary);
   width: 100%;
-  height: 38vh;
+  height: auto;
   overflow: hidden;
   transition: height 0.8s ease;
 }
 
-.playlist-page-header:hover {
-  height: 60vh;
-}
-.playlist-page-header:hover .playlist-page-header-info table {
-  opacity: 1;
-  transition: all 0.5s ease;
-  transition-delay: 0.5s;
-}
 
 .playlist-page-header h2 {
   text-align: center;
@@ -62,7 +53,7 @@
   width: 90%;
   table-layout: fixed;
   border-collapse: collapse;
-  opacity: 0;
+  opacity: 1;
 }
 .playlist-page-header-info table td {
   width: 50%;

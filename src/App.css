@@ -31,3 +31,10 @@ button {
 .no-underline {
   text-decoration: none;
 }
+
+.error-container {
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

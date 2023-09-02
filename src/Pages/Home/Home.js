@@ -45,9 +45,7 @@ function Home() {
     fetchData();
   }, [dispatch, artistIds, trackIds]);
 
-  if (data.profileStatus === "loading") {
-    return;
-  } else if (data.profileStatus === "completed") {
+  if (data.profileStatus === "completed") {
     return (
       <div className="home-page-container">
         <div className="home-profile-section">
@@ -58,7 +56,7 @@ function Home() {
             </h1>
           </div>
           <div className="home-profile-icon">
-            <img src={data.data.images[1].url} alt={data.data.display_name} />
+            <img src={data.data.images[1]?.url} alt={data.data.display_name} />
           </div>
           <div className="home-profile-info">
             <p>
@@ -78,11 +76,18 @@ function Home() {
               <h2>
                 All Time Top Track<span>!</span>
               </h2>
-              <div className="home-track-top-div">
-                <img src={tracks[0].album.images[1].url} alt="top artist" />
-                <h3>{tracks[0].name}</h3>
-                <h4>{tracks[0].artists[0].name}</h4>
-              </div>
+              {tracks.length === 0 ? (
+                <h3>Not enough data to provide your top tracks 😥</h3>
+              ) : (
+                <div className="home-track-top-div">
+                  <img
+                    src={tracks[0]?.album?.images[1]?.url}
+                    alt="top artist"
+                  />
+                  <h3>{tracks[0]?.name}</h3>
+                  <h4>{tracks[0]?.artists[0]?.name}</h4>
+                </div>
+              )}
             </div>
             <div className="home-tracks-list">
               {tracks.map((track, index) => {
@@ -131,10 +136,14 @@ function Home() {
               <h2>
                 All Time Top Artist<span>!</span>
               </h2>
-              <div className="home-artist-top-div">
-                <img src={artists[0].images[1].url} alt="top artist" />
-                <h3>{artists[0].name}</h3>
-              </div>
+              {artists.length === 0 ? (
+                <h3>Not enough data to provide your top artists 😥</h3>
+              ) : (
+                <div className="home-artist-top-div">
+                  <img src={artists[0]?.images[1]?.url} alt="top artist" />
+                  <h3>{artists[0]?.name}</h3>
+                </div>
+              )}
             </div>
           </div>
         )}

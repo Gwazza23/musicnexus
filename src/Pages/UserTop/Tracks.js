@@ -28,6 +28,14 @@ function Tracks() {
     dispatch(fetchRecommendedTrack(seeds));
   }, [dispatch, sort, seeds]);
 
+  if (tracks?.length === 0) {
+    return (
+      <div className="error-container">
+        <h2 className="error">Not enough data to provide your top tracks 😵</h2>
+      </div>
+    );
+  }
+
   return (
     <div className="user-top-page-container">
       <div className="user-top-page-header">

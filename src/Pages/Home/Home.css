@@ -159,6 +159,7 @@ h4 {
 */
 
 .home-artists-section {
+  padding-bottom: 5vh;
   height: fit-content;
   display: grid;
   grid-template-columns: repeat(4, 1fr);

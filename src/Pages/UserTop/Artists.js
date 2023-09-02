@@ -20,6 +20,14 @@ function Artists() {
     dispatch(fetchUserTopArtists(sort));
   }, [dispatch, sort, seeds]);
 
+  if (artists?.length === 0) {
+    return (
+      <div className="error-container">
+        <h2>Not enough data to provide your top artists 😵</h2>
+      </div>
+    );
+  }
+
   return (
     <div className="user-top-page-container">
       <div className="user-top-page-header">
@@ -46,35 +54,35 @@ function Artists() {
         </div>
       </div>
       <div className="user-top-page-div artist-page">
-        {artists?.map((artist) => {
-          return (
-            <div
-              className="user-top-page-card"
-              key={artist.id}
-              onClick={() => {
-                navigate(`/home/artists/${artist.id}`);
-              }}
-            >
-              <div className="user-top-page-image-div">
-                <img
-                  src={artist.images[2].url}
-                  alt={artist.name}
-                  width={artist.images[2].width}
-                  height={artist.images[2].height}
-                />
+          {artists?.map((artist) => {
+            return (
+              <div
+                className="user-top-page-card"
+                key={artist.id}
+                onClick={() => {
+                  navigate(`/home/artists/${artist.id}`);
+                }}
+              >
+                <div className="user-top-page-image-div">
+                  <img
+                    src={artist.images[2].url}
+                    alt={artist.name}
+                    width={artist.images[2].width}
+                    height={artist.images[2].height}
+                  />
+                </div>
+                <div className="user-top-page-info-div">
+                  <h3>{artist.name}</h3>
+                  <ul>
+                    {artist.genres.map((genre) => {
+                      return <li>{genre}</li>;
+                    })}
+                  </ul>
+                </div>
               </div>
-              <div className="user-top-page-info-div">
-                <h3>{artist.name}</h3>
-                <ul>
-                  {artist.genres.map((genre) => {
-                    return <li>{genre}</li>;
-                  })}
-                </ul>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
     </div>
   );
 }
