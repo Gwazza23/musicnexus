@@ -13,6 +13,7 @@ function NavBar() {
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("spotify_auth_state")
     navigate("/");
   };
 
