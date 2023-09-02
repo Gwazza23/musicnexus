@@ -10,7 +10,7 @@ const fetchUserFollowing = createAsyncThunk(
   "user/fetchUserFollowing",
   async () => {
     const response = await getUserFollowing();
-    return response.data.artists.items.length;
+    return response;
   }
 );
 

@@ -2,7 +2,7 @@ import axios from "axios";
 
 async function retrieveAccessToken() {
   const accessToken = localStorage.getItem("accessToken");
-  return accessToken
+  return accessToken;
 }
 
 /* 
@@ -10,8 +10,6 @@ async function retrieveAccessToken() {
 |   oauth   |
  -----------
 */
-
-
 
 /* 
  --------------  
@@ -36,14 +34,25 @@ export async function getProfileInfo() {
 
 export async function getUserFollowing() {
   const accessToken = await retrieveAccessToken();
+  let totalFollowing = 0;
+
   try {
     let url = "https://api.spotify.com/v1/me/following?type=artist";
-    const response = await axios.get(url, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-    return response;
+    let nextUrl = url;
+
+    while (nextUrl) {
+      const response = await axios.get(nextUrl, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      totalFollowing += response.data.artists.items.length;
+
+      nextUrl = response.data.artists.next;
+    }
+
+    return totalFollowing;
   } catch (error) {
     console.error("Error fetching playlists", error);
   }

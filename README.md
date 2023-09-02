@@ -23,7 +23,7 @@ Home page contains 3 sections :
 * Profile page overview - short overview of profile with user icon, numbers of followers a user has, number of people the user is following (limited to just artist due to API) and number of playlists the user is part of.
 * User top tracks section - card displaying the users most listened to track of all time and the user's top 5 tracks of all time
 * User top artists section - card displaying the user most listened to artist of all time and user's top 5 artists of all time
-<p align='start'>
+<p align='center'>
 <img src='./public/images/readme/home-page-profile.png' width="500" >
 <img src='./public/images/readme/home-page-top-tracks.png' width='500' >
 <img src='./public/images/readme/home-page-top-artists.png' width='500' >
