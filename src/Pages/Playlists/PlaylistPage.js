@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./PlaylistPage.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchPlaylist,
@@ -87,7 +87,7 @@ function PlaylistPage() {
     dispatch(fetchPlaylist(id));
     dispatch(fetchPlaylistFeatures(ids));
     getPlaylistCoverImage(id).then((response) =>
-      setCoverImage(response.data[0])
+      setCoverImage(response?.data[0])
     );
   }, [dispatch, id, ids]);
 
@@ -96,31 +96,35 @@ function PlaylistPage() {
       <div className="playlist-page-container">
         <div className="playlist-page-section-one">
           <div className="playlist-page-header">
-            <h2>{playlist.name}</h2>
+            <NavLink to={playlist.external_urls?.spotify} className="no-underline" >
+              <h2>{playlist.name}</h2>{" "}
+            </NavLink>
             <img src={coverImage?.url} alt={playlist.name} />
             <div className="playlist-page-header-info">
               {playlist.description && <h3>{playlist.description}</h3>}
               <table>
-                <tr>
-                  <td>
-                    <h4>{playlist.owner?.display_name}</h4>
-                    <p>Created By</p>
-                  </td>
-                  <td>
-                    <h4>{playlist.followers?.total}</h4>
-                    <p>Followers</p>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <h4>{playlist.tracks?.items?.length}</h4>
-                    <p>Tracks</p>
-                  </td>
-                  <td>
-                    <h4>{msToMinutesAndSeconds(playlistDuration)}</h4>
-                    <p>Duration</p>
-                  </td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <td>
+                      <h4>{playlist.owner?.display_name}</h4>
+                      <p>Created By</p>
+                    </td>
+                    <td>
+                      <h4>{playlist.followers?.total}</h4>
+                      <p>Followers</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h4>{playlist.tracks?.items?.length}</h4>
+                      <p>Tracks</p>
+                    </td>
+                    <td>
+                      <h4>{msToMinutesAndSeconds(playlistDuration)}</h4>
+                      <p>Duration</p>
+                    </td>
+                  </tr>
+                </tbody>
               </table>
             </div>
           </div>
@@ -142,6 +146,7 @@ function PlaylistPage() {
                   onClick={() => {
                     navigate(`/home/tracks/${item.track.id}`);
                   }}
+                  key={item.track.id}
                 >
                   <img
                     src={item.track.album.images[0].url}
@@ -151,7 +156,7 @@ function PlaylistPage() {
                     <h2>{item.track.name}</h2>
                     <div className="playlist-page-track-div-artists">
                       {item.track.artists.map((artist) => {
-                        return <h3>{artist.name}</h3>;
+                        return <h3 key={artist.id}>{artist.name}</h3>;
                       })}
                     </div>
                     <h3>{item.track.album.name}</h3>

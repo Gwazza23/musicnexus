@@ -27,3 +27,7 @@ button {
   text-decoration-color: var(--tertiary);
   text-underline-offset: 5px;
 }
+
+.no-underline {
+  text-decoration: none;
+}

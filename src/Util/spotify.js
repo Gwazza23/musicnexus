@@ -252,7 +252,6 @@ export async function getPlaylistCoverImage(id) {
 }
 
 export async function getPlaylistFeatures(ids) {
-  console.log("am been caled");
   const accessToken = await retrieveAccessToken();
   try {
     let url = `https://api.spotify.com/v1/audio-features?ids=${ids}`;
